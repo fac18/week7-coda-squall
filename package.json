@@ -7,7 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc --reporter=lcov tape tests/*test.js | tap-spec",
+    "start": "node src/server.js",
+    "coverage": "codecov"
   },
   "repository": {
     "type": "git",
