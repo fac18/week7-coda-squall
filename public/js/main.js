@@ -20,7 +20,9 @@ const populateAllChar = res => {
     talismanCell.textContent = character.talisman;
     battleCryCell.textContent = character.battle_cry;
     powerCell.textContent = character.powers_name;
-    powerImage.src = character.image_path;
+    powerImage.src = `public/img/${character.image_path}`;
+    powerImage.alt = "power image icon";
+    powerImage.classList.add("power-image-table");
 
     tableBody.appendChild(row);
     row.appendChild(nameCell);
