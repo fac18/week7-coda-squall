@@ -1,11 +1,9 @@
-const makeMe = document.getElementById("makeme");
-
-const populateAllChar = () => {
+window.onload = () => {
   backendCall("/get-all-char", "GET", null, res => {
-    console.log(res);
+    populateAllChar(res);
   });
 };
 
-makeMe.addEventListener("click", () => {
-  populateAllChar();
-});
+const populateAllChar = res => {
+  console.log(res);
+};
