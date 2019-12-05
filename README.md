@@ -7,7 +7,7 @@
 ## We are:
 * Dan
 * Renata
-* Roshan
+* Roshan 🙆🏾
 * Gillian
 
 ## Project
