@@ -51,8 +51,8 @@ test('Public route should render favicon', t => {
         })
 });
 
-// test('create-char route should fetch character obj', t => {
-//     supertest(router)
-//         .get('/create-char')
-//         .
-// });
+test('create-char route should fetch character obj', t => {
+    supertest(router)
+        .get('/create-char')
+        .
+});
