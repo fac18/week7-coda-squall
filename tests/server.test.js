@@ -51,8 +51,47 @@ test('Public route should render favicon', t => {
         })
 });
 
-test('create-char route should fetch character obj', t => {
+test('create-char route should post character obj', t => {
     supertest(router)
         .get('/create-char')
-        .
+        .send('name=dragon&powers_id=4&talisman=ankh&battle_cry=AHH')
+        .expect(201)
+        .expect('content-type', /json/)
+        .end((err, res) => {
+            t.error(err, 'Error is null');
+            t.end();
+        })
 });
+
+test('get-char route should get character obj', t => {
+    supertest(router)
+        .get('/get-char?q=dragon')
+        .expect(200)
+        .expect('content-type', /json/)
+        .end((err,res) => {
+            t.error(err, 'Error is null')
+            t.end();
+        })
+});
+
+test('get-all-char route should get all characters arr', t => {
+    supertest(router)
+        .get('/get-all-chars')
+        .expect(200)
+        .expect('content-type', /json/)
+        .end((err, res) => {
+            t.error(err, 'Error is null');
+            t.end();
+        })
+});
+
+test('404 page is served correctly', t => {
+    supertest(router)
+        .get('/nowhere')
+        .expect(404)
+        .expect('content-type',/html/)
+        .end((err,res) => {
+            t.error(err, 'Error is null')
+            t.end()
+        })
+})
