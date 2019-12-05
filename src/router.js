@@ -8,11 +8,13 @@ const endpoint = request.url
   } else if (endpoint.startsWith('/public')) {
     handers.handlePublic(request,response)
   } else if (endpoint === ('/create-char')) {
-    handlers.handlePostData(request,response)
-  } else if (endpoint.startsWith('/search')) {
-    handlers.handleSearch(request,response)
+    handlers.handleCreateChar(request,response)
+  } else if (endpoint.startsWith('/get-char')) {
+    handlers.handleGetChar(request,response,endpoint)
+  } else if (endpoint.startsWith('/get-all-char')) {
+    handlers.handleGetAllChar(request,response)
   } else {
-    handle404(request,response)
+    handlers.handle404(request,response)
   }
 }
 
