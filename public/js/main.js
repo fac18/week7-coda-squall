@@ -18,14 +18,29 @@ window.onload = () => {
   });
 };
 
+// on submission of create char form, assemble character and post to backend
+// then populate DOM with same character object
 postButton.addEventListener('onclick', e => {
   // prevent form's in built POST request
   e.preventDefault();
 
-  // assemble character querystring to send to backend
-  const name = document.querySelector('.char-form-name').value
-  const talisman = document.querySelector('.char-form-talisman').value
-  const battleCry = document.querySelector('.char-form-battle-cry').value
+  // assemble character querystring to send to backend, and obj for population
+  const name = document.querySelector('#char-form-name').value
+  const talisman = document.querySelector('#char-form-talisman').value
+  const battleCry = document.querySelector('#char-form-battle-cry').value
+  const.power = document.querySelector('input[name="power-id"]:checked').value
+  let charQuery = `name=${name}&talisman=${talisman}&battle_cry=${battleCry}&power=${power-id}`;
+  let charObj = { name, talisman, battleCry, power , score: 0};
 
+  // make post request with backendCall
+  backendCall("/create-char",'POST',charQuery, res => {
+    // res = response confirming successful post (we hope)
+  })
+
+  // populate DOM with char info
+  populatePlayer(charObj);
+
+  // scroll to player-section
+  // ??
 
 })
