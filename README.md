@@ -34,6 +34,20 @@ Some suggested project ideas are below. Feel free to modify according to your in
 
 ### Things we learned
 * Requiring a file also runs that file - which you don't normally notice, but we saw surprise console logs in our testing
+* How to make reusable XML requests (finally!)
+```javascript
+const backendCall = (url, method, data, cb) => {
+  const xml = new XMLHttpRequest();
+  xml.onreadystatechange = () => {
+    if (xml.readyState === 4 && xml.status === 200) {
+      let apiResponse = JSON.parse(xml.responseText);
+      cb(apiResponse);
+    }
+  };
+  xml.open(method, url, true);
+  xml.send();
+};
+```
 
 ### Accessibility
 
