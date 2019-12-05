@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/fac18/week6-coda-squall.svg?branch=master)](https://travis-ci.org/fac18/week6-coda-squall)
 
+[![codecov](https://codecov.io/gh/fac18/week6-coda-squall/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/week6-coda-squall)
+
 ## We are:
 Dan
 Renata
