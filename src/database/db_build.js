@@ -6,4 +6,12 @@ const runDbBuild = cb => {
   dbConnection.query(sql, cb);
 };
 
+// runDbBuild((err, res) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(res);
+//   }
+// });
+
 module.exports = runDbBuild;
