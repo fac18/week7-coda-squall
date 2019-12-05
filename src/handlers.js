@@ -21,7 +21,7 @@ const handleHome = (request,response) => {
 
 const handlePublic = (request,response) => {
   // const extension = request.url.split('.')[1]
-  const extension = path.extname(request.url)
+  const extension = path.extname(request.url).split('.')[1]
   const extensionType = {
     html: 'text/html',
     css: 'text/css',
@@ -38,7 +38,7 @@ const handlePublic = (request,response) => {
       response.writeHead(500, { 'content-type' : 'text/html' })
       response.end('<h1>Sorry, a problem on our end!</h1>')
     } else {
-      response.writeHead(200, { 'content-type' : extenstionType[extension] })
+      response.writeHead(200, { 'content-type' : extensionType[extension] })
       response.end(file)
     }
   })
@@ -63,15 +63,14 @@ const handleCreateChar = (request, response) => {
         response.writeHead(500, { 'content-type' : 'text/html' })
         response.end('<h1>Sorry, a problem on our end!</h1>')
       } else {
-      console.log('Character created: ', res);
-      response.writeHead(201, { 'content-type' : 'text/html' })
-      response.end('<h1>Your character was created!! </h1>')
+      response.writeHead(201, { 'content-type' : 'application/json' , Location : `/get-char?q=${character.name}`})
+      response.end()
     }
     })
   })
 }
 
-const handleGetChar = (request,reponse,endpoint) => {
+const handleGetChar = (request,response,endpoint) => {
   // endpoint is of the form '/get-char?q=[name]'
   let name = endpoint.split('=')[1];
   getData.getChar(name, (err,res) => {
@@ -81,7 +80,7 @@ const handleGetChar = (request,reponse,endpoint) => {
       response.end('<h1> This is not a character. Try again.</h1>')
     } else {
       // here 'res' is an object containing all data for character with given name
-      console.log('Character found: ',res)
+      response.writeHead(200, { 'content-type' : 'application/json' })
       response.end(JSON.stringify(res))
     }
   })
@@ -94,7 +93,7 @@ const handleGetAllChar = (request, response) => {
       response.writeHead(500, { 'content-type' : 'text/html'})
       response.end('<h1> Sorry, there was a problem on our end! </h1>')
     } else {
-      console.log('All characters found ', res)
+      response.writeHead(200, { 'content-type' : 'application/json' })
       response.end(JSON.stringify(res));
     }
   })

@@ -11,7 +11,10 @@
     "dbtest": "NODE_ENV=test node tests/db.test.js | tap-spec",
     "start": "node src/server.js",
     "coverage": "codecov",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "allTests": "tape tests/*.test.js | tap-spec",
+    "serverTest": "NODE_ENV=test tape tests/server.test.js | tap-spec",
+    "nyc": "nyc tape tests/server.test.js | tap-spec"
   },
   "repository": {
     "type": "git",
