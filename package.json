@@ -8,13 +8,14 @@
   },
   "scripts": {
     "test": "nyc --reporter=lcov tape tests/*test.js | tap-spec",
-    "dbtest": "NODE_ENV=test node tests/db.test.js | tap-spec",
     "start": "nodemon src/server.js",
     "coverage": "codecov",
     "dev": "nodemon src/server.js",
-    "allTests": "tape tests/*.test.js | tap-spec",
-    "serverTest": "NODE_ENV=test tape tests/server.test.js | tap-spec",
-    "nyc": "nyc tape tests/server.test.js | tap-spec"
+    "alltests": "NODE_ENV=test tape tests/*.test.js | tap-spec",
+    "servertest": "NODE_ENV=test tape tests/server.test.js | tap-spec",
+    "dbtest": "NODE_ENV=test node tests/db.test.js | tap-spec",
+    "logictest": "NODE_ENV_test node tests/logic.test.js | tap-spec",
+    "nyc": "NODE_ENV=test nyc tape tests/server.test.js | tap-spec"
   },
   "repository": {
     "type": "git",
