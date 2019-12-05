@@ -28,3 +28,8 @@ Some suggested project ideas are below. Feel free to modify according to your in
 - [x] test your server routes with supertest
 - [ ] test your pure functions both server and client side
 - [x] set up a test database so that you can test your database queries
+
+Schema
+
+Tips:
+test will run console.log from required file.
