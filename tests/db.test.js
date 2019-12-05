@@ -96,7 +96,7 @@ tape("Get specific character", t => {
     {
       id: 1,
       name: "Travis",
-      //   power_id: 4,
+      powers_id: 4,
       talisman: "golden moustache",
       battle_cry: "Your build is not passing"
     }
