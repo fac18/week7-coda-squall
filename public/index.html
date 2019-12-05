@@ -18,7 +18,7 @@
     <!-- form to return with existing user/character -->
     <section class="form-section">
       <h2 class="form-heading">Welcome back</h2>
-      <form action="" class="return-form">
+      <form action="" method="" class="return-form">
         <label for="name" class="return-char__label">Player name</label>
         <input type="text" class="return-char__field" name="name" />
         <button class="return-char__submit">FETCH ME!</button>
@@ -28,17 +28,17 @@
     <!-- form to create new character -->
     <section class="form-section">
       <h2 class="form-heading">Create new player</h2>
-      <form action="/create-char" method="post" class="char-form">
+      <form action="" method="" class="char-form">
         <div class="char-form__left">
           <!-- normal text fields for name, talisman, battle cry -->
           <label class="char-form__label" for="name">Player name</label>
-          <input type="text" class="char-form__field" name="name" />
+          <input type="text" class="char-form__field" name="name" id="char-form-name"/>
           <label for="talisman" class="char-form__label"
             >Choose your talisman</label
           >
-          <input type="text" class="char-form__field" name="talisman" />
-          <label for="battle_cry" class="char-form__label"></label>
-          <input type="text" class="char-form__field" name="battle_cry" />
+          <input type="text" class="char-form__field" name="talisman" id="char-form-talisman"/>
+          <label for="battle-cry" class="char-form__label"></label>
+          <input type="text" class="char-form__field" name="battle-cry" id="char-form-battle_cry"/>
         </div>
         <div class="char-form__right">
           <!-- column of powers as radio buttons disguised as images -->
@@ -46,7 +46,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="powers_id"
+              name="power-id"
             />
             <img
               src="public/img/electricity.png"
@@ -58,7 +58,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="powers_id"
+              name="power-id"
             />
             <img
               src="public/img/radiation.png"
@@ -70,7 +70,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="powers_id"
+              name="power-id"
             />
             <img
               src="public/img/punch.png"
@@ -82,7 +82,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="powers_id"
+              name="power-id"
             />
             <img
               src="public/img/clairvoyance.png"
@@ -94,7 +94,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="powers_id"
+              name="power-id"
             />
             <img
               src="public/img/telekinesis.png"
@@ -106,7 +106,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="powers_id"
+              name="power-id"
             />
             <img
               src="public/img/shape-shifting.png"
@@ -118,7 +118,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="powers_id"
+              name="power-id"
             />
             <img
               src="public/img/time-manipulation.png"
@@ -137,10 +137,12 @@
       </form>
     </section>
 
-    <!-- personal player area -->
-    <section class="player-section"></section>
+    <!-- personal player area, to be populated with player's info on completion of either form -->
+    <section class="player-section">
 
-    <!-- leaderboard container, to be dynamically populated with all characters -->
+    </section>
+
+    <!-- leaderboard container, to be populated with all characters on page load -->
     <section class="leaderboard-section">
       <h2 class="leaderboard-heading">LEADERBOARD</h2>
 
@@ -157,6 +159,8 @@
         <tbody id="table-body"></tbody>
       </table>
     </section>
+
+    <!-- load js -->
     <script src="public/js/request.js"></script>
     <script src="public/js/main.js"></script>
   </body>

@@ -7,5 +7,5 @@ const backendCall = (url, method, data, cb) => {
     }
   };
   xml.open(method, url, true);
-  xml.send();
+  xml.send(data);
 };
