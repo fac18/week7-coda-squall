@@ -9,7 +9,7 @@ const getAllChar = cb => {
 
 const getChar = (name, cb) => {
   dbConnection.query(
-    `SELECT * FROM characters WHERE name = ${name}`,
+    `SELECT * FROM characters WHERE name=${name}`,
     (err, result) => {
       if (err) return cb(err);
       cb(null, result.rows);
@@ -18,7 +18,9 @@ const getChar = (name, cb) => {
 };
 
 const getPow = cb => {
+  console.log("This is get Pow1");
   dbConnection.query("SELECT * FROM powers", (err, result) => {
+    console.log("This is get Pow");
     if (err) return cb(err);
     cb(null, result.rows);
   });
