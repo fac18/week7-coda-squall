@@ -6,7 +6,7 @@ const endpoint = request.url
   if (endpoint === '/') {
     handlers.handleHome(request,response)
   } else if (endpoint.startsWith('/public')) {
-    handers.handlePublic(request,response)
+    handlers.handlePublic(request,response)
   } else if (endpoint === ('/create-char')) {
     handlers.handleCreateChar(request,response)
   } else if (endpoint.startsWith('/get-char')) {

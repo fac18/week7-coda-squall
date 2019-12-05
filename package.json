@@ -10,7 +10,9 @@
     "test": "nyc --reporter=lcov tape tests/*test.js | tap-spec",
     "start": "node src/server.js",
     "coverage": "codecov",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "allTests": "tape tests/*.test.js | tap-spec",
+    "serverTest": "tape tests/server.test.js | tap-spec"
   },
   "repository": {
     "type": "git",

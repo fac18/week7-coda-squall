@@ -21,7 +21,7 @@ const handleHome = (request,response) => {
 
 const handlePublic = (request,response) => {
   // const extension = request.url.split('.')[1]
-  const extension = path.extname(request.url)
+  const extension = path.extname(request.url).split('.')[1]
   const extensionType = {
     html: 'text/html',
     css: 'text/css',
@@ -38,7 +38,10 @@ const handlePublic = (request,response) => {
       response.writeHead(500, { 'content-type' : 'text/html' })
       response.end('<h1>Sorry, a problem on our end!</h1>')
     } else {
-      response.writeHead(200, { 'content-type' : extenstionType[extension] })
+      console.log('check filepath matching: ',filePath)
+      console.log('file ending: ', extension)
+      console.log('content-type: ',extensionType[extension])
+      response.writeHead(200, { 'content-type' : extensionType[extension] })
       response.end(file)
     }
   })
