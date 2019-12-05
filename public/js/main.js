@@ -17,3 +17,15 @@ window.onload = () => {
     populateAllChar(res);
   });
 };
+
+postButton.addEventListener('onclick', e => {
+  // prevent form's in built POST request
+  e.preventDefault();
+
+  // assemble character querystring to send to backend
+  const name = document.querySelector('.char-form-name').value
+  const talisman = document.querySelector('.char-form-talisman').value
+  const battleCry = document.querySelector('.char-form-battle-cry').value
+
+
+})
