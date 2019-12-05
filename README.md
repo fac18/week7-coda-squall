@@ -6,7 +6,7 @@
 
 ## We are:
 * Dan
-* Renata
+* Renata 🐰
 * Roshan 🙆🏾
 * Gillian
 
