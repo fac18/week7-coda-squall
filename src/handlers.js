@@ -88,7 +88,7 @@ const handleGetChar = (request,reponse,endpoint) => {
 }
 
 const handleGetAllChar = (request, response) => {
-  getData.getAllChar(err, res) => {
+  getData.getAllChar((err, res) => {
     if (err) {
       console.log(err)
       response.writeHead(500, { 'content-type' : 'text/html'})
@@ -97,7 +97,7 @@ const handleGetAllChar = (request, response) => {
       console.log('All characters found ', res)
       response.end(JSON.stringify(res));
     }
-  }
+  })
 }
 
 const handle404 = (request, response) => {
