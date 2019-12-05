@@ -1,20 +1,11 @@
-const backendCall = (url, method) => {
-  let apiResponse;
-  const xml = new XMLHttpRequest();
+const makeMe = document.getElementById("makeme");
 
-  xml.onreadystatechange = () => {
-    if (xml.readyState === 4 && xml.status === 200) {
-      apiResponse = JSON.parse(xml.responseText);
-    }
-  };
-  xml.open(method, url, true);
-  xml.send();
-  return apiResponse;
+const populateAllChar = () => {
+  backendCall("/get-all-char", "GET", null, res => {
+    console.log(res);
+  });
 };
 
-// .addeventlistener('load',populateAllChar)
-
-// const populateAllChar = () => {
-//     let allCharData = backendCall('/get-all-char',"GET")
-// allCharTable.textContent = allCharData
-// }
+makeMe.addEventListener("click", () => {
+  populateAllChar();
+});
