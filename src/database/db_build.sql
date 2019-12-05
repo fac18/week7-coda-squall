@@ -3,13 +3,6 @@ BEGIN;
 DROP TABLE IF EXISTS characters CASCADE;
 DROP TABLE IF EXISTS powers CASCADE;
 
-CREATE TABLE characters (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(20) NOT NULL,
-    powers_id INTEGER REFERENCES powers(id),
-    talisman VARCHAR(30) NOT NULL,
-    battle_cry VARCHAR(200) NOT NULL
-);
 
 CREATE TABLE powers (
     id SERIAL PRIMARY KEY,
@@ -18,7 +11,15 @@ CREATE TABLE powers (
     image_path VARCHAR(30)
 );
 
-INSERT INTO powers (name, description, image) VALUES 
+CREATE TABLE characters (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    powers_id INTEGER REFERENCES powers(id),
+    talisman VARCHAR(30) NOT NULL,
+    battle_cry VARCHAR(200) NOT NULL
+);
+
+INSERT INTO powers (name, description, image_path) VALUES 
 ('Electricity', 'Description here...', 'electricity.png'),
 ('Radiation', 'Description here...', 'radiation.png'),
 ('Punch', 'Description here...', 'punch.png'),
