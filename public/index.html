@@ -5,9 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link ref="stylesheet" href="public/css/main.css">
-    <title>Document</title>
+    <title>SQUALL</title>
 </head>
 <body>
+
+  <!-- nav bar fixed to top of page -->
+  <nav class="nav-bar">
+    <h1 class="title">SQUALL</h1>
+    <a class="nav-link" href='#leaderboard'>Leaderboard</a>
+  </nav>
+
+  <!-- form to return with existing user/character -->
+  <section class="form-section">
+    <h2 class="form-heading">Welcome back</h2>
+    <form action="" class="return-form">
+      <label for="name" class="return-char__label">Player name</label>
+      <input type="text" class="return-char__field" name="name">
+      <button class="return-char__submit">FETCH ME!</button>
+    </form>
+  </section>
+
+  <!-- form to create new character -->
+  <section class="form-section">
+    <h2 class="form-heading">Create new player</h2>
+    <form action="/create-char" method='post' class="char-form">
+      <div class="char-form__left">
+        <!-- normal text fields for name, talisman, battle cry -->
+        <label class="char-form__label" for="name">Player name</label>
+        <input type="text" class="char-form__field" name="name">
+        <label for="talisman" class="char-form__label">Choose your talisman</label>
+        <input type="text" class="char-form__field" name="talisman">
+        <label for="battle_cry" class="char-form__label"></label>
+        <input type="text" class="char-form__field" name="battle_cry">
+      </div>
+      <div class="char-form__right">
+        <!-- column of powers as radio buttons disguised as images -->
+        <label for="" class="char-form__radio-label">
+          <input type="radio" class="char-form__radio-input" name="powers_id">
+          <img src="public/img/electricity.png" alt="electricity power icon" class="char-form__radio-img">
+        </label>
+        <label for="" class="char-form__radio-label">
+          <input type="radio" class="char-form__radio-input" name="powers_id">
+          <img src="public/img/radiation.png" alt="radiation power icon" class="char-form__radio-img">
+        </label>
+        <label for="" class="char-form__radio-label">
+          <input type="radio" class="char-form__radio-input" name="powers_id">
+          <img src="public/img/punch.png" alt="punch power icon" class="char-form__radio-img">
+        </label>
+        <label for="" class="char-form__radio-label">
+          <input type="radio" class="char-form__radio-input" name="powers_id">
+          <img src="public/img/clairvoyance.png" alt="clairvoyance power icon" class="char-form__radio-img">
+        </label>
+        <label for="" class="char-form__radio-label">
+          <input type="radio" class="char-form__radio-input" name="powers_id">
+          <img src="public/img/telekinesis.png" alt="telekinesis power icon" class="char-form__radio-img">
+        </label>
+        <label for="" class="char-form__radio-label">
+          <input type="radio" class="char-form__radio-input" name="powers_id">
+          <img src="public/img/shape-shifting.png" alt="shape shifting power icon" class="char-form__radio-img">
+        </label>
+        <label for="" class="char-form__radio-label">
+          <input type="radio" class="char-form__radio-input" name="powers_id">
+          <img src="public/img/time-manipulation.png" alt="time manipulation power icon" class="char-form__radio-img">
+        </label>
+      </div>
+      <button class="char-form__submit" type="submit" aria-label="submit button for form to create new character">MAKE ME!</button>
+    </form>
+  </section>
+
+  <!-- personal player area -->
+  <section class="player-section">
     
+  </section>
+
+  <!-- leaderboard container, to be dynamically populated with all characters -->
+  <section class="leaderboard-section">
+    <h2 class="leaderboard-heading">LEADERBOARD</h2>
+    <div class="leaderboard-field">
+      <h3 class="leaderboard-field__title">Name</h3>
+      <ul class="leaderboard-field__list"></ul>
+    </div>
+    <div class="leaderboard-field">
+      <h3 class="leaderboard-field__title">Power</h3>
+      <ul class="leaderboard-field__list"></ul>
+    </div>
+    <div class="leaderboard-field">
+      <h3 class="leaderboard-field__title">Score</h3>
+      <ul class="leaderboard-field__list"></ul>
+    </div>
+  </section>
+
 </body>
 </html>
