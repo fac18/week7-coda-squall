@@ -5,10 +5,10 @@
 [![codecov](https://codecov.io/gh/fac18/week6-coda-squall/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/week6-coda-squall)
 
 ## We are:
-Dan
-Renata
-Roshan
-Gillian
+* Dan
+* Renata
+* Roshan
+* Gillian
 
 ## Project
 This week's project will involve setting up a database which you connect to via a node.js server. You'll use your data to make a dynamic web app for your front-end.
@@ -29,7 +29,12 @@ Some suggested project ideas are below. Feel free to modify according to your in
 - [ ] test your pure functions both server and client side
 - [x] set up a test database so that you can test your database queries
 
-Schema
+### :pencil: Schema
+![schema](https://imgur.com/coS9CZI.jpg)
 
-Tips:
-test will run console.log from required file.
+### Things we learned
+* Requiring a file also runs that file - which you don't normally notice, but we saw surprise console logs in our testing
+
+### Accessibility
+
+### Future improvements
