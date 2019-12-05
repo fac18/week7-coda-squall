@@ -28,4 +28,7 @@ INSERT INTO powers (name, description, image_path) VALUES
 ('Shape shifting', 'Description here...', 'shape-shifting.png'),
 ('Time manipulation', 'Description here...', 'time-manipulation.png');
 
+INSERT INTO characters (name, talisman, battle_cry) VALUES 
+('Travis','golden moustache', 'Your build is not passing');
+
 COMMIT;

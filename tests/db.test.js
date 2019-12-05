@@ -63,3 +63,47 @@ tape("Get all powers", t => {
     t.end();
   });
 });
+
+tape("Create character", t => {
+  runDbBuild((err, res) => {
+    if (err) console.log(err);
+    return;
+  });
+  let expected = {
+    command: "INSERT",
+    rowCount: 1
+  };
+  let character = {
+    name: "Heroku",
+    talisman: "enchanted amulet",
+    power_id: "3",
+    battle_cry: "Your app isn't working"
+  };
+  postData(character, (err, res) => {
+    if (err) return err;
+    t.deepEqual(res.command, expected.command, "Command should be INSERT");
+    t.deepEqual(res.rowCount, expected.rowCount, "New rows should be 1");
+    t.end();
+  });
+});
+
+tape("Get specific character", t => {
+  runDbBuild((err, res) => {
+    if (err) console.log(err);
+    return;
+  });
+  let expected = [
+    {
+      id: 1,
+      name: "Travis",
+      //   power_id: 4,
+      talisman: "golden moustache",
+      battle_cry: "Your build is not passing"
+    }
+  ];
+  getData.getChar("Travis", (err, res) => {
+    if (err) return err;
+    t.deepEqual(res, expected, "This is Travis : ");
+    t.end();
+  });
+});
