@@ -56,8 +56,8 @@ const handleCreateChar = (request, response) => {
         response.writeHead(500, { 'content-type' : 'text/html' })
         response.end('<h1>Sorry, a problem on our end!</h1>')
       } else {
-        response.writeHead(201, { 'content-type' : 'application/json' , Location : `/`})
-        response.end(JSON.stringify(res))
+        response.writeHead(201, { Location : `/`})
+        response.end()
       }
     })
   })

@@ -56,7 +56,7 @@ test('create-char route should post character obj', t => {
         .get('/create-char')
         .send('name=dragon&powers_id=4&talisman=ankh&battle_cry=AHH')
         .expect(201)
-        .expect('content-type', /json/)
+        .expect('Location','/')
         .end((err, res) => {
             t.error(err, 'Error is null');
             t.end();
