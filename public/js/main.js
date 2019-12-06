@@ -43,6 +43,7 @@ const getExistingPlayer = name => {
   });
 };
 
+// define function to remove existing player when finding a new one
 const killAllChildren = parentNode => {
   while (parentNode.firstChild) {
     parentNode.removeChild(parentNode.firstChild);
