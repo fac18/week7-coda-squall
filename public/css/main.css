@@ -1,13 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P|Tomorrow&display=swap');
+:root { 
+  /* Spacing variables: golden ratio */
+  --space-xs: 0.382rem;
+  --space-s: 0.618rem;
+  --space-m: 1rem;
+  --space-l: 1.618rem;
+  --space-xl: 2.618rem;
+  --space-xxl: 4.236rem;
+
+   /* Fonts  */
+  --titles: 'Tomorrow', sans-serif;
+  --body: 'Press Start 2P', cursive;
+}
 
 body {
-  background-image: url('../img/playing-cards.jpg');
+  /* background-image: url('../img/playing-cards.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
+  text-align: center;
+  background: linear-gradient(0deg, rgba(0,0,0,0.9611125700280112) 0%, rgba(251,37,43,1) 35%);
+  /* background: linear-gradient(0deg, rgba(0,0,0,0.8182554271708684) 0%, rgba(251,37,43,0.815454306722689) 35%); */
+  /* background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(251,37,43,0.9374124649859944) 35%, rgba(0,0,0,1) 100%); */
 }
 
 body, form {
-  font-family: 'Tomorrow', sans-serif;
+  font-family: var(--titles);
+  line-height: var(--space-xl);
 }
 
 *{
@@ -16,8 +34,16 @@ body, form {
   box-sizing: border-box;
 }
 
-h1, h2, h3, button {
-  font-family: 'Press Start 2P', cursive;
+h1, h2, button {
+  font-family: var(--body);
+}
+
+h2 {
+  font-size: 100%;
+}
+
+.colorful {
+  color: red
 }
 
 nav {
@@ -39,6 +65,7 @@ nav {
 
 .nav-menu{
   width: 70%;
+  color: red;
 }
 
 .nav-menu ul{
@@ -52,7 +79,7 @@ a {
 }
 
 .nav-menu ul li {
-  padding: 10px 20px;
+  padding-right: 10px;
   color: #ccc;
   font-size: 20px;
   list-style-type: none;
@@ -68,9 +95,15 @@ a {
  /* here*/
 
 
+
+ /* Tables */
 .power-image-table {
   width: 64px;
   height: 64px;
+}
+
+table {
+  text-align: center;
 }
 
 .char-form__radio-img {
