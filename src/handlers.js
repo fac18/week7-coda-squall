@@ -25,7 +25,7 @@ const handlePublic = (request,response) => {
   const extensionType = {
     html: 'text/html',
     css: 'text/css',
-    js: 'application/js',
+    js: 'application/javascript',
     png: 'image/png',
     jpg: 'image/jpg',
     jpeg: 'image/jpeg',
@@ -45,16 +45,9 @@ const handlePublic = (request,response) => {
 }
 
 const handleCreateChar = (request, response) => {
-  let data = ''
-
-  request.on('data', chunk => {
-    data += chunk;
-  })
-
-  request.on('error', error => {
-    throw error;
-  })
-
+  let data = '';
+  request.on('data', chunk => { data += chunk });
+  request.on('error', error => { throw error });
   request.on('end', () => {
     const character = querystring.parse(data);
     postData(character, (error, res) => {
@@ -63,9 +56,9 @@ const handleCreateChar = (request, response) => {
         response.writeHead(500, { 'content-type' : 'text/html' })
         response.end('<h1>Sorry, a problem on our end!</h1>')
       } else {
-      response.writeHead(201, { 'content-type' : 'application/json' , Location : `/get-char?q=${character.name}`})
-      response.end()
-    }
+        response.writeHead(201, { 'content-type' : 'application/json' , Location : `/`})
+        response.end(JSON.stringify(res))
+      }
     })
   })
 }
