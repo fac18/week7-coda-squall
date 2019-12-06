@@ -149,6 +149,21 @@ table {
   border-bottom: 2px solid;
 }
 
+/* Old Character */
+
+.selected-player-field-label {
+  font-family: var(--titles);
+  font-size: 0.8rem;
+}
+
+.player-section {
+  margin-bottom: var(--space-m);
+}
+
+h3 {
+  font-family: var(--titles);
+}
+
 /* Form sections */
 
 .form-section {
