@@ -6,14 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" type="text/css" href="public/css/main.css" />
     <link rel="icon" type="image/png" href="public/img/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P|Tomorrow&display=swap"
+      rel="stylesheet"
+      type="text/css"
+    />
     <title>SQUALL</title>
   </head>
   <body>
-
     <!-- nav bar fixed to top of page -->
     <nav>
       <div class="nav-title">
-        <h1><span class="colorful">SQ</span>UAL<span class="colorful">L</span></h1>
+        <h1>
+          <span class="colorful">SQ</span>UAL<span class="colorful">L</span>
+        </h1>
       </div>
 
       <div class="nav-menu">
@@ -21,7 +27,8 @@
           <li><a class="nav-menu" href="#leaderboard">Leaderboard</a></li>
         </ul>
       </div>
-    </nav><br>
+    </nav>
+    <br />
 
     <!-- form to return with existing user/character -->
     <section class="form-section">
@@ -29,9 +36,16 @@
       <form action="/" method="" class="return-form">
         <label for="name" class="return-form__label">Player name</label>
         <input type="text" class="return-form__field" name="name" />
-        <button type="submit" class="return-form__submit" aria-label="submit button to find your existing player">FETCH ME!</button>
+        <button
+          type="submit"
+          class="return-form__submit"
+          aria-label="submit button to find your existing player"
+        >
+          FETCH ME!
+        </button>
       </form>
-    </section><br>
+    </section>
+    <br />
 
     <!-- form to create new character -->
     <section class="form-section">
@@ -40,13 +54,30 @@
         <div class="char-form__left">
           <!-- normal text fields for name, talisman, battle cry -->
           <label class="char-form__label" for="name">Player name</label>
-          <input type="text" class="char-form__field" name="name" id="char-form-name"/>
+          <input
+            type="text"
+            class="char-form__field"
+            name="name"
+            id="char-form-name"
+          />
           <label for="talisman" class="char-form__label"
             >Choose your talisman</label
           >
-          <input type="text" class="char-form__field" name="talisman" id="char-form-talisman"/>
-          <label for="battle-cry" class="char-form__label">Your battle cry</label>
-          <input type="text" class="char-form__field" name="battle-cry" id="char-form-battle-cry"/>
+          <input
+            type="text"
+            class="char-form__field"
+            name="talisman"
+            id="char-form-talisman"
+          />
+          <label for="battle-cry" class="char-form__label"
+            >Your battle cry</label
+          >
+          <input
+            type="text"
+            class="char-form__field"
+            name="battle-cry"
+            id="char-form-battle-cry"
+          />
         </div>
         <div class="char-form__right">
           <!-- column of powers as radio buttonchar-form__ss disguised as images -->
@@ -150,12 +181,11 @@
           MAKE ME!
         </button>
       </form>
-    </section> <br>
+    </section>
+    <br />
 
     <!-- personal player area, to be populated with player's info on completion of either form -->
-    <section class="player-section">
-
-    </section>
+    <section class="player-section"></section>
 
     <!-- leaderboard container, to be populated with all characters on page load -->
     <section id="leaderboard" class="leaderboard-section">
