@@ -43,6 +43,7 @@ const getExistingPlayer = name => {
   });
 };
 
+// define function to remove existing player when finding a new one
 const killAllChildren = parentNode => {
   while (parentNode.firstChild) {
     parentNode.removeChild(parentNode.firstChild);
@@ -51,27 +52,48 @@ const killAllChildren = parentNode => {
 
 // define function for populating .player-section with character info
 const populatePlayer = char => {
-  console.log(char);
   const playerSection = document.querySelector(".player-section");
 
+  // if there is already a character showing, delete it
   killAllChildren(playerSection);
 
+  //create all the elements for the new character
   const playerName = document.createElement("h3");
   const playerTalisman = document.createElement("p");
+  const playerTalismanLabel = document.createElement("span");
+  const playerTalismanValue = document.createElement("span");
   const playerBattleCry = document.createElement("p");
+  const playerBattleCryLabel = document.createElement("span");
+  const playerBattleCryValue = document.createElement("span");
   const playerPowerName = document.createElement("p");
-  const playerPowerImg = document.createElement("img");
+  const playerPowerNameLabel = document.createElement("span");
+  const playerPowerNameValue = document.createElement("span");
 
+  //add classes to labels so they can be formatted
+  playerTalismanLabel.classList.add("selected-player-field-label");
+  playerBattleCryLabel.classList.add("selected-player-field-label");
+  playerPowerNameLabel.classList.add("selected-player-field-label");
+
+  //add text to fields
   playerName.textContent = char.name;
-  playerTalisman.textContent = `Talisman: ${char.talisman}`;
-  playerBattleCry.textContent = `Battle Cry: ${char.battle_cry}`;
-  playerPowerName.textContent = `Power Name: ${powerMap[char.powers_id]}`;
+  playerTalismanLabel.textContent = `Talisman: `;
+  playerTalismanValue.textContent = `${char.talisman}`;
+  playerBattleCryLabel.textContent = `Battle Cry: `;
+  playerBattleCryValue.textContent = `${char.battle_cry}`;
+  playerPowerNameLabel.textContent = `Power Name: `;
+  playerPowerNameValue.textContent = `${powerMap[char.powers_id]}`;
 
+  //append all elements
   playerSection.appendChild(playerName);
   playerSection.appendChild(playerTalisman);
+  playerTalisman.appendChild(playerTalismanLabel);
+  playerTalisman.appendChild(playerTalismanValue);
   playerSection.appendChild(playerBattleCry);
+  playerBattleCry.appendChild(playerBattleCryLabel);
+  playerBattleCry.appendChild(playerBattleCryValue);
   playerSection.appendChild(playerPowerName);
-  playerSection.appendChild(playerPowerImg);
+  playerPowerName.appendChild(playerPowerNameLabel);
+  playerPowerName.appendChild(playerPowerNameValue);
 };
 
 const powerMap = {
