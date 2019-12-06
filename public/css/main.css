@@ -108,6 +108,26 @@ a {
   font-weight: bold;
 }
 
+
+/* Radio buttons as images */
+
+.char-form__radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.char-form__radio-img {
+  cursor: pointer;
+  width: 88px;
+  height: 88px;
+}
+
+.char-form__radio-input:checked + img {
+  outline: 2px solid white;
+}
+
 /* Table */
 
 .power-image-table {
@@ -121,11 +141,6 @@ th {
 
 table {
   text-align: center;
-}
-
-.char-form__radio-img {
-  width: 64px;
-  height: 64px;
 }
 
 /* Leaderboard table */
@@ -205,22 +220,3 @@ h3 {
   .form-section {
     width: 100%;
   }
-
-/* Radio buttons as images */
-
-.char-form__radio-input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.char-form__radio-img {
-  cursor: pointer;
-  width: 88px;
-  height: 88px;
-}
-
-.char-form__radio-input:checked + img {
-  outline: 2px solid white;
-}
