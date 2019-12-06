@@ -34,6 +34,10 @@ body, form {
   line-height: var(--space-xl);
 }
 
+iframe {
+  margin: 20px;
+}
+
 /* Titles and buttons */
 
 h1, h2, button {
