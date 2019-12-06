@@ -1,5 +1,9 @@
+// * ESSENTIAL NODES *
+
 const postButton = document.querySelector(".char-form__submit");
 const getButton = document.querySelector(".return-form__submit");
+
+// * FUNCTION DECLARATIONS *
 
 // define DOM injection function for populating leaderboard with all characters
 const populateAllChar = res => {
@@ -47,6 +51,8 @@ const populatePlayer = char => {
   playerSection.appendChild(playerName);
 };
 
+// * EVENT LISTENERS *
+
 // populate leaderboard with all characters on loading of page
 window.onload = () => {
   backendCall("/get-all-char", "GET", null, res => {
@@ -77,7 +83,7 @@ postButton.addEventListener("click", e => {
 
   // make post request with backendCall
   backendCall("/create-char", "POST", charQuery, res => {
-    console.log(res) // response confirming successful post (we hope)
+    // console.log(res)
   });
 
   // populate DOM with char info

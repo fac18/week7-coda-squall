@@ -50,7 +50,6 @@ const handleCreateChar = (request, response) => {
   request.on('error', error => { throw error });
   request.on('end', () => {
     const character = querystring.parse(data);
-    console.log('character after querystring parse', character)
     postData(character, (error, res) => {
       if (error) {
         console.log(error);
