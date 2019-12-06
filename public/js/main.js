@@ -110,7 +110,9 @@ postButton.addEventListener("click", e => {
   const name = document.querySelector("#char-form-name").value;
   const talisman = document.querySelector("#char-form-talisman").value;
   const battleCry = document.querySelector("#char-form-battle-cry").value;
-  const power = document.querySelector(".char-form__radio-input").value;
+  const power = document.querySelectorAll(".char-form__radio-input").value;
+  console.log('the radio button node list:' document.querySelectorAll(".char-form__radio-input"))
+  console.log('and its value: ', power)
   let charQuery = `name=${name}&talisman=${talisman}&battle_cry=${battleCry}&powers_id=${power}`;
   let charObj = {
     name,
