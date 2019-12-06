@@ -1,3 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P|Tomorrow&display=swap');
+
+body {
+  background-image: url('../img/playing-cards.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body, form {
+  font-family: 'Tomorrow', sans-serif;
+}
+
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, button {
+  font-family: 'Press Start 2P', cursive;
+}
+
+nav {
+  background: black;
+  color: white;
+  height: 50px;
+  display: flex;
+  flex-wrap:wrap;
+  align-items: center;
+}
+
+.nav-title{
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+  width: 30%;
+  text-align: center;
+}
+
+.nav-menu{
+  width: 70%;
+}
+
+.nav-menu ul{
+  display: flex;
+  justify-content: flex-end;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-menu ul li {
+  padding: 10px 20px;
+  color: #ccc;
+  font-size: 20px;
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.nav-menu ul li:hover{
+  color: #fff;
+  font-weight: bold;
+}
+
+ /*style for responsive menu*/
+ /* here*/
+
+
 .power-image-table {
   width: 64px;
   height: 64px;

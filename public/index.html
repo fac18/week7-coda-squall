@@ -9,12 +9,25 @@
     <title>SQUALL</title>
   </head>
   <body>
+
     <!-- nav bar fixed to top of page -->
-    <nav class="nav-bar">
-      <h1 class="title">SQUALL</h1>
-      <a class="nav-link" href="#leaderboard">Leaderboard</a>
+    <nav>
+      <div class="nav-title">
+        <h1>SQUALL</h1>
+      </div>
+
+      <div class="nav-menu">
+        <ul>
+          <li><a class="nav-menu" href="#leaderboard">Leaderboard</a></li>
+        </ul>
+      </div>  
     </nav>
 
+    <!-- Title -->
+    <main>
+        <h1 class="title">SQUALL</h1>
+    </main>
+    
     <!-- form to return with existing user/character -->
     <section class="form-section">
       <h2 class="form-heading">Welcome back</h2>
@@ -143,7 +156,7 @@
     </section>
 
     <!-- leaderboard container, to be populated with all characters on page load -->
-    <section class="leaderboard-section">
+    <section id="leaderboard" class="leaderboard-section">
       <h2 class="leaderboard-heading">LEADERBOARD</h2>
 
       <table class="characters-table">

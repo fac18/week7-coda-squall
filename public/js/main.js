@@ -1,6 +1,13 @@
 const postButton = document.querySelector(".char-form__submit");
 const getButton = document.querySelector(".return-form__submit");
 
+// populate leaderboard with all characters on loading of page
+window.onload = () => {
+  backendCall("/get-all-char", "GET", null, res => {
+    populateAllChar(res);
+  });
+};
+
 // define DOM injection function for populating leaderboard with all characters
 const populateAllChar = res => {
   let allCharData = res;
@@ -51,13 +58,6 @@ const populatePlayer = char => {
   const playerName = document.createElement("h3");
   playerName.textContent = char.name;
   playerSection.appendChild(playerName);
-};
-
-// populate leaderboard with all characters on loading of page
-window.onload = () => {
-  backendCall("/get-all-char", "GET", null, res => {
-    populateAllChar(res);
-  });
 };
 
 // on submission of create char form, assemble character and post to backend
