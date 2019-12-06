@@ -35,7 +35,7 @@
       <h2 class="form-heading">Welcome back</h2>
       <form action="/" method="" class="return-form">
         <label for="name" class="return-form__label">Player name</label>
-        <input type="text" class="return-form__field" name="name" />
+        <input type="text" class="return-form__field" name="name" id="name"/>
         <button
           type="submit"
           class="return-form__submit"
@@ -53,14 +53,14 @@
       <form action="" method="" class="char-form">
         <div class="char-form__left">
           <!-- normal text fields for name, talisman, battle cry -->
-          <label class="char-form__label" for="name">Player name</label>
+          <label class="char-form__label" for="char-form-name">Player name</label>
           <input
             type="text"
             class="char-form__field"
             name="name"
             id="char-form-name"
           />
-          <label for="talisman" class="char-form__label"
+          <label for="char-form-talisman" class="char-form__label"
             >Choose your talisman</label
           >
           <input
@@ -69,7 +69,7 @@
             name="talisman"
             id="char-form-talisman"
           />
-          <label for="battle-cry" class="char-form__label"
+          <label for="char-form-battle-cry" class="char-form__label"
             >Your battle cry</label
           >
           <input
@@ -81,12 +81,13 @@
         </div>
         <div class="char-form__right">
           <!-- column of powers as radio buttonchar-form__ss disguised as images -->
-          <label for="" class="char-form__radio-label">
+          <label for="power-id-1" class="char-form__radio-label">
             <input
               type="radio"
               class="char-form__radio-input"
               name="power-id"
               value="1"
+              id="power-id-1"
             />
             <img
               src="public/img/electricity.png"
@@ -94,12 +95,13 @@
               class="char-form__radio-img"
             />
           </label>
-          <label for="" class="char-form__radio-label">
+          <label for="power-id-2" class="char-form__radio-label">
             <input
               type="radio"
               class="char-form__radio-input"
               name="power-id"
               value="2"
+              id="power-id-2"
             />
             <img
               src="public/img/radiation.png"
@@ -107,12 +109,13 @@
               class="char-form__radio-img"
             />
           </label>
-          <label for="" class="char-form__radio-label">
+          <label for="power-id-3" class="char-form__radio-label">
             <input
               type="radio"
               class="char-form__radio-input"
               name="power-id"
               value="3"
+              id="power-id-3"
             />
             <img
               src="public/img/punch.png"
@@ -120,12 +123,13 @@
               class="char-form__radio-img"
             />
           </label>
-          <label for="" class="char-form__radio-label">
+          <label for="power-id-4" class="char-form__radio-label">
             <input
               type="radio"
               class="char-form__radio-input"
               name="power-id"
               value="4"
+              id="power-id-4"
             />
             <img
               src="public/img/clairvoyance.png"
@@ -133,12 +137,13 @@
               class="char-form__radio-img"
             />
           </label>
-          <label for="" class="char-form__radio-label">
+          <label for="power-id-5" class="char-form__radio-label">
             <input
               type="radio"
               class="char-form__radio-input"
               name="power-id"
               value="5"
+              id="power-id-5"
             />
             <img
               src="public/img/telekinesis.png"
@@ -146,12 +151,13 @@
               class="char-form__radio-img"
             />
           </label>
-          <label for="" class="char-form__radio-label">
+          <label for="power-id-6" class="char-form__radio-label">
             <input
               type="radio"
               class="char-form__radio-input"
               name="power-id"
               value="6"
+              id="power-id-6"
             />
             <img
               src="public/img/shape-shifting.png"
@@ -159,12 +165,13 @@
               class="char-form__radio-img"
             />
           </label>
-          <label for="" class="char-form__radio-label">
+          <label for="power-id-7" class="char-form__radio-label">
             <input
               type="radio"
               class="char-form__radio-input"
               name="power-id"
               value="7"
+              id="power-id-7"
             />
             <img
               src="public/img/time-manipulation.png"
