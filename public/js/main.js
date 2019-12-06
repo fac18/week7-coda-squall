@@ -39,7 +39,7 @@ getButton.addEventListener("onclick", e => {
 
 //define function for finding existing player
 const getExistingPlayer = () => {
-  const inputName = document.querySelector(".return-char__field");
+  const inputName = document.querySelector(".return-form__field");
   backendCall(`/get-char?name=${inputName}`, "GET", null, res => {
     populatePlayer(res);
   });
@@ -71,8 +71,7 @@ postButton.addEventListener("onclick", e => {
   const talisman = document.querySelector("#char-form-talisman").value;
   const battleCry = document.querySelector("#char-form-battle-cry").value;
   const power = document.querySelector('input[name="power-id"]:checked').value;
-  let charQuery = `name=${name}&talisman=${talisman}&battle_cry=${battleCry}&power=${power -
-    id}`;
+  let charQuery = `name=${name}&talisman=${talisman}&battle_cry=${battleCry}&powers_id=${power}`;
   let charObj = { name, talisman, battleCry, power, score: 0 };
 
   // make post request with backendCall
