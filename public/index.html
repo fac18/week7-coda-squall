@@ -18,10 +18,10 @@
     <!-- form to return with existing user/character -->
     <section class="form-section">
       <h2 class="form-heading">Welcome back</h2>
-      <form action="" method="" class="return-form">
-        <label for="name" class="return-char__label">Player name</label>
-        <input type="text" class="return-char__field" name="name" />
-        <button class="return-char__submit">FETCH ME!</button>
+      <form action="/" method="" class="return-form">
+        <label for="name" class="return-form__label">Player name</label>
+        <input type="text" class="return-form__field" name="name" />
+        <button type="submit" class="return-form__submit" aria-label="submit button to find your existing player">FETCH ME!</button>
       </form>
     </section>
 
@@ -37,8 +37,8 @@
             >Choose your talisman</label
           >
           <input type="text" class="char-form__field" name="talisman" id="char-form-talisman"/>
-          <label for="battle-cry" class="char-form__label"></label>
-          <input type="text" class="char-form__field" name="battle-cry" id="char-form-battle_cry"/>
+          <label for="battle-cry" class="char-form__label">Your battle cry</label>
+          <input type="text" class="char-form__field" name="battle-cry" id="char-form-battle-cry"/>
         </div>
         <div class="char-form__right">
           <!-- column of powers as radio buttons disguised as images -->
@@ -47,6 +47,7 @@
               type="radio"
               class="char-form__radio-input"
               name="power-id"
+              value="1"
             />
             <img
               src="public/img/electricity.png"
@@ -59,6 +60,7 @@
               type="radio"
               class="char-form__radio-input"
               name="power-id"
+              value="2"
             />
             <img
               src="public/img/radiation.png"
@@ -71,6 +73,7 @@
               type="radio"
               class="char-form__radio-input"
               name="power-id"
+              value="3"
             />
             <img
               src="public/img/punch.png"
@@ -83,9 +86,10 @@
               type="radio"
               class="char-form__radio-input"
               name="power-id"
+              value="4"
             />
             <img
-              src="public/img/clairvoyant.png"
+              src="public/img/clairvoyance.png"
               alt="clairvoyance power icon"
               class="char-form__radio-img"
             />
@@ -95,6 +99,7 @@
               type="radio"
               class="char-form__radio-input"
               name="power-id"
+              value="5"
             />
             <img
               src="public/img/telekinesis.png"
@@ -107,6 +112,7 @@
               type="radio"
               class="char-form__radio-input"
               name="power-id"
+              value="6"
             />
             <img
               src="public/img/shape-shifting.png"
@@ -119,6 +125,7 @@
               type="radio"
               class="char-form__radio-input"
               name="power-id"
+              value="7"
             />
             <img
               src="public/img/time-manipulation.png"

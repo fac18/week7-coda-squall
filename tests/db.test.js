@@ -59,7 +59,7 @@ tape("Get all powers", t => {
   ];
   getData.getPow((err, res) => {
     if (err) return err;
-    t.deepEqual(res, expected, "These are all the powers : ");
+    t.deepEqual(res, expected, "Should return all the powers");
     t.end();
   });
 });
@@ -105,7 +105,7 @@ tape("Get specific character", t => {
   ];
   getData.getChar("Travis", (err, res) => {
     if (err) return err;
-    t.deepEqual(res, expected, "This is Travis : ");
+    t.deepEqual(res, expected, "Should return the character Travis");
     t.end();
   });
 });

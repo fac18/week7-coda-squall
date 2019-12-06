@@ -5,7 +5,7 @@ const postChar = (character, cb) => {
     "INSERT INTO characters (name, powers_id, talisman, battle_cry) VALUES ($1, $2, $3, $4)",
     [
       character.name,
-      character.powers_id,
+      parseInt(character.powers_id),
       character.talisman,
       character.battle_cry
     ],
