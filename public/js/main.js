@@ -94,6 +94,8 @@ const populatePlayer = char => {
   playerSection.appendChild(playerPowerName);
   playerPowerName.appendChild(playerPowerNameLabel);
   playerPowerName.appendChild(playerPowerNameValue);
+
+  window.location.href = "#player-select";
 };
 
 const powerMap = {
