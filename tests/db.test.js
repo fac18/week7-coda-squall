@@ -18,7 +18,7 @@ tape("Get all powers", t => {
       id: 1,
       name: "Electricity",
       description: "Description here...",
-      image_path: "electricity.png",
+      image_path: "electricity.png"
     },
     {
       id: 2,
@@ -76,9 +76,8 @@ tape("Create character", t => {
   let character = {
     name: "Heroku",
     talisman: "enchanted amulet",
-    power_id: "3",
-    battle_cry: "Your app isn't working",
-    score: 0,
+    powers_id: 3,
+    battle_cry: "Your app isn't working"
   };
   postData(character, (err, res) => {
     if (err) return err;
@@ -100,7 +99,7 @@ tape("Get specific character", t => {
       powers_id: 4,
       talisman: "golden moustache",
       battle_cry: "Your build is not passing",
-      score: 0,
+      score: 0
     }
   ];
   getData.getChar("Travis", (err, res) => {
