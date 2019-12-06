@@ -37,7 +37,7 @@ const populateAllChar = res => {
 };
 
 //define function for finding existing player
-const getExistingPlayer = (name) => {
+const getExistingPlayer = name => {
   backendCall(`/get-char?name=${name}`, "GET", null, res => {
     populatePlayer(res[0]);
   });
@@ -46,9 +46,23 @@ const getExistingPlayer = (name) => {
 // define function for populating .player-section with character info
 const populatePlayer = char => {
   const playerSection = document.querySelector(".player-section");
+
   const playerName = document.createElement("h3");
+  const playerTalisman = document.createElement("p");
+  const playerBattleCry = document.createElement("p");
+  const playerPowerName = document.createElement("p");
+  const playerPowerImg = document.createElement("img");
+
   playerName.textContent = char.name;
+  playerTalisman.textContent = `Talisman: ${char.talisman}`;
+  playerBattleCry.textContent = `Battle Cry: ${char.battleCry}`;
+  playerPowerName.textContent = `Power Name: ${char.power}`;
+
   playerSection.appendChild(playerName);
+  playerSection.appendChild(playerTalisman);
+  playerSection.appendChild(playerBattleCry);
+  playerSection.appendChild(playerPowerName);
+  playerSection.appendChild(playerImg);
 };
 
 // * EVENT LISTENERS *
@@ -77,7 +91,7 @@ postButton.addEventListener("click", e => {
   const name = document.querySelector("#char-form-name").value;
   const talisman = document.querySelector("#char-form-talisman").value;
   const battleCry = document.querySelector("#char-form-battle-cry").value;
-  const power = document.querySelector('.char-form__radio-input').value;
+  const power = document.querySelector(".char-form__radio-input").value;
   let charQuery = `name=${name}&talisman=${talisman}&battle_cry=${battleCry}&powers_id=${power}`;
   let charObj = { name, talisman, battleCry, power, score: 0 };
 
