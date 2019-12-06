@@ -20,7 +20,7 @@ const populateAllChar = res => {
 
     nameCell.textContent = character.name;
     talismanCell.textContent = character.talisman;
-    battleCryCell.textContent = character.battle_cry;
+    battleCryCell.textContent = character.battleCry;
     powerCell.textContent = character.powers_name;
     powerImage.src = `public/img/${character.image_path}`;
     powerImage.alt = "power image icon";
@@ -43,9 +43,18 @@ const getExistingPlayer = name => {
   });
 };
 
+const killAllChildren = parentNode => {
+  while (parentNode.firstChild) {
+    parentNode.removeChild(parentNode.firstChild);
+  }
+};
+
 // define function for populating .player-section with character info
 const populatePlayer = char => {
+  console.log(char);
   const playerSection = document.querySelector(".player-section");
+
+  killAllChildren(playerSection);
 
   const playerName = document.createElement("h3");
   const playerTalisman = document.createElement("p");
@@ -55,14 +64,24 @@ const populatePlayer = char => {
 
   playerName.textContent = char.name;
   playerTalisman.textContent = `Talisman: ${char.talisman}`;
-  playerBattleCry.textContent = `Battle Cry: ${char.battleCry}`;
-  playerPowerName.textContent = `Power Name: ${char.power}`;
+  playerBattleCry.textContent = `Battle Cry: ${char.battle_cry}`;
+  playerPowerName.textContent = `Power Name: ${powerMap[char.powers_id]}`;
 
   playerSection.appendChild(playerName);
   playerSection.appendChild(playerTalisman);
   playerSection.appendChild(playerBattleCry);
   playerSection.appendChild(playerPowerName);
-  playerSection.appendChild(playerImg);
+  playerSection.appendChild(playerPowerImg);
+};
+
+const powerMap = {
+  1: "Electricity",
+  2: "Radiation",
+  3: "Punch",
+  4: "Clairvoyance",
+  5: "Telekinesis",
+  6: "Shape shifting",
+  7: "Time manipulation"
 };
 
 // * EVENT LISTENERS *
@@ -93,7 +112,13 @@ postButton.addEventListener("click", e => {
   const battleCry = document.querySelector("#char-form-battle-cry").value;
   const power = document.querySelector(".char-form__radio-input").value;
   let charQuery = `name=${name}&talisman=${talisman}&battle_cry=${battleCry}&powers_id=${power}`;
-  let charObj = { name, talisman, battleCry, power, score: 0 };
+  let charObj = {
+    name,
+    talisman,
+    battle_cry: battleCry,
+    powers_id: power,
+    score: 0
+  };
 
   // make post request with backendCall
   backendCall("/create-char", "POST", charQuery, res => {
