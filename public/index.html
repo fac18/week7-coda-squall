@@ -9,11 +9,19 @@
     <title>SQUALL</title>
   </head>
   <body>
+
     <!-- nav bar fixed to top of page -->
-    <nav class="nav-bar">
-      <h1 class="title">SQUALL</h1>
-      <a class="nav-link" href="#leaderboard">Leaderboard</a>
-    </nav>
+    <nav>
+      <div class="nav-title">
+        <h1><span class="colorful">SQ</span>UAL<span class="colorful">L</span></h1>
+      </div>
+
+      <div class="nav-menu">
+        <ul>
+          <li><a class="nav-menu" href="#leaderboard">Leaderboard</a></li>
+        </ul>
+      </div>  
+    </nav><br>
 
     <!-- form to return with existing user/character -->
     <section class="form-section">
@@ -23,7 +31,7 @@
         <input type="text" class="return-form__field" name="name" />
         <button type="submit" class="return-form__submit" aria-label="submit button to find your existing player">FETCH ME!</button>
       </form>
-    </section>
+    </section><br>
 
     <!-- form to create new character -->
     <section class="form-section">
@@ -142,7 +150,7 @@
           MAKE ME!
         </button>
       </form>
-    </section>
+    </section> <br>
 
     <!-- personal player area, to be populated with player's info on completion of either form -->
     <section class="player-section">
@@ -150,7 +158,7 @@
     </section>
 
     <!-- leaderboard container, to be populated with all characters on page load -->
-    <section class="leaderboard-section">
+    <section id="leaderboard" class="leaderboard-section">
       <h2 class="leaderboard-heading">LEADERBOARD</h2>
 
       <table class="characters-table">

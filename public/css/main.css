@@ -1,9 +1,133 @@
-.power-image-table {
-  width: 64px;
-  height: 64px;
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P|Tomorrow&display=swap');
+:root { 
+  /* Spacing variables: golden ratio */
+  --space-xs: 0.382rem;
+  --space-s: 0.618rem;
+  --space-m: 1rem;
+  --space-l: 1.618rem;
+  --space-xl: 2.618rem;
+  --space-xxl: 4.236rem;
+
+   /* Fonts  */
+  --titles: 'Tomorrow', sans-serif;
+  --body: 'Press Start 2P', cursive;
 }
 
+body {
+  text-align: center;
+  background: linear-gradient(0deg, rgba(0,0,0,0.9611125700280112) 0%, rgba(251,37,43,1) 35%);
+}
+
+body, form {
+  font-family: var(--titles);
+  line-height: var(--space-xl);
+}
+
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+h1, h2, button {
+  font-family: var(--body);
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.colorful {
+  color: red
+}
+
+nav {
+  background: black;
+  color: white;
+  height: 50px;
+  display: flex;
+  flex-wrap:wrap;
+  align-items: center;
+}
+
+.nav-title{
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+  width: 30%;
+  text-align: center;
+}
+
+.nav-menu{
+  width: 70%;
+  color: red;
+}
+
+.nav-menu ul{
+  display: flex;
+  justify-content: flex-end;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-menu ul li {
+  padding-right: 10px;
+  color: #ccc;
+  font-size: 20px;
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.nav-menu ul li:hover{
+  color: #fff;
+  font-weight: bold;
+}
+
+.power-image-table {
+  width: 44px;
+  height: 44px;
+}
+
+table {
+  text-align: center;
+}
+
+input, button {
+  cursor: pointer;
+}
 .char-form__radio-img {
-  width: 128px;
-  height: 128px;
+  width: 88px;
+  height: 88px;
+}
+
+
+.form-section {
+  margin: 0 auto;
+  padding: 20px 60px 35px 0px;
+  background-color: rgb(0,0,0, 0.1);
+  border-radius: 10px;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+  width: 60vw;
+  max-width: 1000px;
+  color: white
+}
+
+.return-form__field, .char-form__field {
+  padding: 10px;
+  width: 40vw;
+  max-width: 200px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+button {
+  margin-left: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  
 }
