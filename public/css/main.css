@@ -7,36 +7,37 @@
   --space-xl: 2.618rem;
   --space-xxl: 4.236rem;
 
-  /* Fonts  */
-  --titles: "Tomorrow", sans-serif;
-  --body: "Press Start 2P", cursive;
+   /* Fonts  */
+  --body: 'Tomorrow', sans-serif;
+  --titles: 'Press Start 2P', cursive;
 }
 
-body {
-  text-align: center;
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.9611125700280112) 0%,
-    rgba(251, 37, 43, 1) 35%
-  );
-}
-
-body,
-form {
-  font-family: var(--titles);
-  line-height: var(--space-xl);
-}
-
-* {
+/* General */
+*{
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
 }
 
-h1,
-h2,
-button {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-align: center;
+  background-color: red;
+  width: 100%;
+}
+
+body, form {
   font-family: var(--body);
+  line-height: var(--space-xl);
+}
+
+/* Titles and buttons */
+
+h1, h2, button {
+  font-family: var(--titles);
 }
 
 h2 {
@@ -46,6 +47,12 @@ h2 {
 .colorful {
   color: red;
 }
+
+button {
+  cursor: pointer;
+}
+
+/* Navbar */
 
 nav {
   background: black;
@@ -92,32 +99,67 @@ a {
   font-weight: bold;
 }
 
+/* Table */
+
 .power-image-table {
   width: 44px;
   height: 44px;
+}
+
+th {
+  font-family: var(--titles);
 }
 
 table {
   text-align: center;
 }
 
-button {
-  cursor: pointer;
-}
 .char-form__radio-img {
-  width: 88px;
-  height: 88px;
+  width: 64px;
+  height: 64px;
 }
+
+/* Leaderboard table */
+
+.characters-table {
+  border-collapse: collapse;
+  margin: 25px auto;
+  font-size: 0.9em;
+  /* max-width: 320px; */
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.characters-table thead tr {
+  background-color: black;
+  color: red;
+}
+
+.characters-table th,
+.characters-table td {
+  padding: 12px 15px;
+}
+
+.characters-table tbody tr {
+  border-bottom: 1px solid;
+}
+
+.characters-table tbody tr:last-of-type {
+  border-bottom: 2px solid;
+}
+
+/* Form sections */
 
 .form-section {
   margin: 0 auto;
-  padding: 20px 60px 35px 0px;
-  background-color: rgb(0, 0, 0, 0.1);
+  padding: 20px 0px 20px 0px;
+  background-color: rgb(0,0,0, 0.1);
   border-radius: 10px;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
   width: 60vw;
-  max-width: 1000px;
-  color: white;
+  /* max-width: 1000px; */
+  color: white
 }
 
 .return-form__field,
@@ -135,4 +177,20 @@ button {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  color: red;
+  background-color:black;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 600px) {
+  body {
+    width: 600px;
+  }
+  .form-section {
+    width: 100%;
+  }
 }
