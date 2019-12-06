@@ -32,16 +32,10 @@ const populateAllChar = res => {
   });
 };
 
-getButton.addEventListener("onclick", e => {
-  e.preventDefault();
-  getExistingPlayer();
-});
-
 //define function for finding existing player
-const getExistingPlayer = () => {
-  const inputName = document.querySelector(".return-form__field");
-  backendCall(`/get-char?name=${inputName}`, "GET", null, res => {
-    populatePlayer(res);
+const getExistingPlayer = (name) => {
+  backendCall(`/get-char?name=${name}`, "GET", null, res => {
+    populatePlayer(res[0]);
   });
 };
 
@@ -60,9 +54,16 @@ window.onload = () => {
   });
 };
 
+// fetch given player on submission of first form
+getButton.addEventListener("click", e => {
+  e.preventDefault();
+  const name = document.querySelector(".return-form__field").value;
+  getExistingPlayer(name);
+});
+
 // on submission of create char form, assemble character and post to backend
 // then populate DOM with same character object
-postButton.addEventListener("onclick", e => {
+postButton.addEventListener("click", e => {
   // prevent form's in built POST request
   e.preventDefault();
 
@@ -70,18 +71,18 @@ postButton.addEventListener("onclick", e => {
   const name = document.querySelector("#char-form-name").value;
   const talisman = document.querySelector("#char-form-talisman").value;
   const battleCry = document.querySelector("#char-form-battle-cry").value;
-  const power = document.querySelector('input[name="power-id"]:checked').value;
+  const power = document.querySelector('.char-form__radio-input').value;
   let charQuery = `name=${name}&talisman=${talisman}&battle_cry=${battleCry}&powers_id=${power}`;
   let charObj = { name, talisman, battleCry, power, score: 0 };
 
   // make post request with backendCall
   backendCall("/create-char", "POST", charQuery, res => {
-    // res = response confirming successful post (we hope)
+    console.log(res) // response confirming successful post (we hope)
   });
 
   // populate DOM with char info
   populatePlayer(charObj);
 
   // scroll to player-section
-  // ??
+  // IMPLEMENT
 });

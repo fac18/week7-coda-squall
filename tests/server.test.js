@@ -13,7 +13,7 @@ test("Home loads correctly", t => {
         .expect(200)
         .expect( 'content-type', /html/ )
         .end((err, res) => {
-            t.error(err, 'Error is null'); 
+            t.error(err, 'Error is null');
             t.end();
         })
 });
@@ -33,7 +33,7 @@ test('Public route should render js', t => {
     supertest(router)
         .get('/public/js/main.js')
         .expect(200)
-        .expect('content-type', /js/)
+        .expect('content-type', /javascript/)
         .end((err,res) => {
             t.error(err, 'Error is null')
             t.end();
@@ -76,7 +76,7 @@ test('get-char route should get character obj', t => {
 
 test('get-all-char route should get all characters arr', t => {
     supertest(router)
-        .get('/get-all-chars')
+        .get('/get-all-char')
         .expect(200)
         .expect('content-type', /json/)
         .end((err, res) => {
