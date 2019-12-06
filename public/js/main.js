@@ -20,7 +20,7 @@ const populateAllChar = res => {
 
     nameCell.textContent = character.name;
     talismanCell.textContent = character.talisman;
-    battleCryCell.textContent = character.battleCry;
+    battleCryCell.textContent = character.battle_cry;
     powerCell.textContent = character.powers_name;
     powerImage.src = `public/img/${character.image_path}`;
     powerImage.alt = "power image icon";
