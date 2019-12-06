@@ -5,10 +5,18 @@
 [![codecov](https://codecov.io/gh/fac18/week6-coda-squall/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/week6-coda-squall)
 
 ## We are:
-* Dan
+* Dan 🎮
 * Renata 🐰
 * Roshan 🙆🏾
-* Gillian
+* Gillian 🍬
+
+## Installation Guide
+
+1. git clone this repo
+2. `npm install` to set up node modules
+3. Initialise a local database
+4. Create .env file in project route
+5. Add DB_URL/TEST_DB_URL values to your .env
 
 ## Project
 This week's project will involve setting up a database which you connect to via a node.js server. You'll use your data to make a dynamic web app for your front-end.
