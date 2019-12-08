@@ -1,23 +1,3 @@
-# week6-coda-squall
-
-[![Build Status](https://travis-ci.org/fac18/week6-coda-squall.svg?branch=master)](https://travis-ci.org/fac18/week6-coda-squall)
-
-[![codecov](https://codecov.io/gh/fac18/week6-coda-squall/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/week6-coda-squall)
-
-## We are:
-* Dan 🎮
-* Renata 🐰
-* Roshan 🙆🏾
-* Gillian 🍬
-
-## Installation Guide
-
-1. git clone this repo
-2. `npm install` to set up node modules
-3. Initialise a local database
-4. Create .env file in project route
-5. Add DB_URL/TEST_DB_URL values to your .env
-
 # <font color="red">SQ</font>UAL<font color="red">L</font>
 <h6>
 Renata, Dan, Gillian & Roshan
@@ -26,6 +6,24 @@ Renata, Dan, Gillian & Roshan
 [![Build Status](https://travis-ci.org/fac18/week6-coda-squall.svg?branch=master)](https://travis-ci.org/fac18/week6-coda-squall)
 
 [![codecov](https://codecov.io/gh/fac18/week6-coda-squall/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/week6-coda-squall)
+
+---
+
+## We are:
+* Dan 🎮
+* Renata 🐰
+* Roshan 🙆🏾
+* Gillian 🍬
+
+---
+
+## Installation Guide
+
+1. git clone this repo
+2. `npm install` to set up node modules
+3. Initialise a local database
+4. Create .env file in project route
+5. Add DB_URL/TEST_DB_URL values to your .env
 
 ---
 
@@ -43,23 +41,19 @@ Renata, Dan, Gillian & Roshan
 
 # <font color="red">Brainstorm</font>
 
-![](https://i.imgur.com/t2RebOo.jpg =500x500)
-
+![](https://i.imgur.com/t2RebOo.jpg)
 
 ---
 
 # <font color="red">Prototype</font>
 
-![](https://i.imgur.com/OrAqGnx.jpg =500x500)
-
-
+![](https://i.imgur.com/OrAqGnx.jpg)
 
 ---
 
 # <font color="red">Schema</font>
 
 ![](https://i.imgur.com/pfGJA4a.png)
-
 
 ---
 
@@ -114,8 +108,6 @@ b) to work in the case that the response has no body (because for safety reasons
 </font>
 
 ---
-
-
 
 ### <font color="red">Other things we learnt
 
