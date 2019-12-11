@@ -35,7 +35,9 @@
       <h2 class="form-heading">Welcome back</h2>
       <form action="/" method="" class="return-form">
         <label for="name" class="return-form__label">Player name:</label>
-        <input type="text" class="return-form__field" name="name" id="name"/><br>
+        <input type="text" class="return-form__field" name="name" id="name"/> <br>
+        <label for="password" class="return-form__password">Password:  </label>
+        <input type="text" class="return-form__field" name="password" id="password"/><br>
         <button type="submit" class="return-form__submit" aria-label="submit button to find your existing player">FETCH ME!</button>
       </form>
     </section>
@@ -49,6 +51,13 @@
           <!-- normal text fields for name, talisman, battle cry -->
           <label class="char-form__label" for="char-form-name">Player name:</label><br>
           <input type="text" class="char-form__field" name="name" id="char-form-name"/><br>
+
+          <label class="char-form__label" for="char-form-password">New password:</label><br>
+          <input type="text" class="char-form__field" name="password" id="char-form-password"/><br>
+
+          <label class="char-form__label" for="char-form-name">Confirm your password:</label><br>
+          <input type="text" class="char-form__field" name="confirmedPassword" id="char-form-confirmedPassword"/><br>
+
           <label for="talisman" class="char-form__label"
             >Your talisman:</label
           ><br>
@@ -169,9 +178,6 @@
       </form>
     </section>
     <br />
-
-    <!-- personal player area, to be populated with player's info on completion of either form -->
-    <section class="player-section" id="player-select"></section>
 
     <!-- leaderboard container, to be populated with all characters on page load -->
     <section id="leaderboard" class="leaderboard-section">
