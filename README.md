@@ -26,7 +26,7 @@
 
 ## This is Week 2
 
-Catch up with our story so far on the [previous week's repo](https://github.com/fac18/week6-coda-squall/issues)
+Catch up with our story so far on the [previous week's repo](https://github.com/fac18/week6-coda-squall/)
 
 ---
 
