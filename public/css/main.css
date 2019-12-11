@@ -194,6 +194,10 @@ h3 {
 
 /* Form sections */
 
+.return-form__field {
+  margin: 8px;
+}
+
 .form-section {
   margin: 0 auto;
   padding: 20px 0px 20px 0px;
