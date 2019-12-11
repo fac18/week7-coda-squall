@@ -1,7 +1,4 @@
 # <font color="red">SQ</font>UAL<font color="red">L</font>
-<h6>
-Renata, Dan, Gillian & Roshan
-</h6>
 
 [![Build Status](https://travis-ci.org/fac18/week6-coda-squall.svg?branch=master)](https://travis-ci.org/fac18/week6-coda-squall)
 
