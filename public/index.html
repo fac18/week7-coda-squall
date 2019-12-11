@@ -33,12 +33,24 @@
     <!-- form to return with existing user/character -->
     <section class="form-section">
       <h2 class="form-heading">Welcome back</h2>
-      <form action="/" method="" class="return-form">
+      <form action="/login" method="POST" class="return-form">
         <label for="name" class="return-form__label">Player name:</label>
-        <input type="text" class="return-form__field" name="name" id="name"/> <br>
-        <label for="password" class="return-form__password">Password:  </label>
-        <input type="text" class="return-form__field" name="password" id="password"/><br>
-        <button type="submit" class="return-form__submit" aria-label="submit button to find your existing player">FETCH ME!</button>
+        <input type="text" class="return-form__field" name="name" id="name" />
+        <br />
+        <label for="password" class="return-form__password">Password: </label>
+        <input
+          type="text"
+          class="return-form__field"
+          name="password"
+          id="password"
+        /><br />
+        <button
+          type="submit"
+          class="return-form__submit"
+          aria-label="submit button to find your existing player"
+        >
+          FETCH ME!
+        </button>
       </form>
     </section>
     <br />
@@ -49,25 +61,57 @@
       <form action="" method="" class="char-form">
         <div class="char-form__left">
           <!-- normal text fields for name, talisman, battle cry -->
-          <label class="char-form__label" for="char-form-name">Player name:</label><br>
-          <input type="text" class="char-form__field" name="name" id="char-form-name"/><br>
+          <label class="char-form__label" for="char-form-name"
+            >Player name:</label
+          ><br />
+          <input
+            type="text"
+            class="char-form__field"
+            name="name"
+            id="char-form-name"
+          /><br />
 
-          <label class="char-form__label" for="char-form-password">New password:</label><br>
-          <input type="text" class="char-form__field" name="password" id="char-form-password"/><br>
+          <label class="char-form__label" for="char-form-password"
+            >New password:</label
+          ><br />
+          <input
+            type="text"
+            class="char-form__field"
+            name="password"
+            id="char-form-password"
+          /><br />
 
-          <label class="char-form__label" for="char-form-name">Confirm your password:</label><br>
-          <input type="text" class="char-form__field" name="confirmedPassword" id="char-form-confirmedPassword"/><br>
+          <label class="char-form__label" for="char-form-name"
+            >Confirm your password:</label
+          ><br />
+          <input
+            type="text"
+            class="char-form__field"
+            name="confirmedPassword"
+            id="char-form-confirmedPassword"
+          /><br />
 
-          <label for="talisman" class="char-form__label"
-            >Your talisman:</label
-          ><br>
-          <input type="text" class="char-form__field" name="char-form-talisman" id="char-form-talisman"/><br>
-          <label for="char-form-battle-cry" class="char-form__label">Your battle cry:</label><br>
-          <input type="text" class="char-form__field" name="battle-cry" id="char-form-battle-cry"/><br>
+          <label for="talisman" class="char-form__label">Your talisman:</label
+          ><br />
+          <input
+            type="text"
+            class="char-form__field"
+            name="char-form-talisman"
+            id="char-form-talisman"
+          /><br />
+          <label for="char-form-battle-cry" class="char-form__label"
+            >Your battle cry:</label
+          ><br />
+          <input
+            type="text"
+            class="char-form__field"
+            name="battle-cry"
+            id="char-form-battle-cry"
+          /><br />
         </div>
         <div class="char-form__right">
           <!-- column of powers as radio buttons disguised as images -->
-          <label>Your power:</label><br>
+          <label>Your power:</label><br />
           <label for="power-id-1" class="char-form__radio-label">
             <input
               type="radio"
@@ -124,7 +168,7 @@
               class="char-form__radio-img"
             />
           </label>
-          <br>
+          <br />
           <label for="power-id-5" class="char-form__radio-label">
             <input
               type="radio"

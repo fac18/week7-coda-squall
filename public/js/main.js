@@ -118,11 +118,11 @@ window.onload = () => {
 };
 
 // fetch given player on submission of first form
-getButton.addEventListener("click", e => {
-  e.preventDefault();
-  const name = document.querySelector(".return-form__field").value;
-  getExistingPlayer(name);
-});
+// getButton.addEventListener("click", e => {
+//   e.preventDefault();
+//   const name = document.querySelector(".return-form__field").value;
+//   getExistingPlayer(name);
+// });
 
 // on submission of create char form, assemble character and post to backend
 // then populate DOM with same character object
