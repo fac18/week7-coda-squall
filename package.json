@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "build": "node src/database/run_build.js",
     "test": "NODE_ENV=test nyc --reporter=lcov tape tests/*test.js | tap-spec",
     "start": "node src/server.js",
     "coverage": "NODE_ENV=test codecov",
