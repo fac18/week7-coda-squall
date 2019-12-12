@@ -10,13 +10,17 @@ const router = (request, response) => {
   } else if (endpoint === "/create-char") {
     handlers.handleCreateChar(request, response);
   } else if (endpoint.startsWith("/get-char")) {
-    handlers.handleGetChar(request, response, endpoint);
+    handlers.handleGetChar(request, response);
   } else if (endpoint === "/get-all-char") {
     handlers.handleGetAllChar(request, response);
   } else if (endpoint === "/login") {
     handlers.handleLogIn(request, response);
   } else if (endpoint === "/logout") {
     handlers.handleLogOut(request, response);
+  } else if (endpoint === "/player-area") {
+    handlers.handlePlayerArea(request, response);
+  } else if (endpoint === "/delete-char") {
+    handlers.handleDeleteChar(request, response)
   } else {
     handlers.handle404(request, response);
   }

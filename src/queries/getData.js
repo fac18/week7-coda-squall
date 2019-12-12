@@ -12,7 +12,7 @@ const getAllChar = cb => {
 
 const getChar = (name, cb) => {
   dbConnection.query(
-    `SELECT * FROM characters WHERE name=$1`,
+    `SELECT name,powers_id,talisman,battle_cry,score FROM characters WHERE name=$1`,
     [name],
     (err, result) => {
       if (err) return cb(err);
