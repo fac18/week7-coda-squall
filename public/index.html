@@ -71,7 +71,9 @@
             class="char-form__field"
             name="name"
             id="char-form-name"
-          /><br />
+          />
+          <p class="error" id="nameErr"></p>
+          <br />
 
           <label class="char-form__label" for="char-form-password"
             >New password:</label
@@ -81,7 +83,9 @@
             class="char-form__field"
             name="password"
             id="char-form-password"
-          /><br />
+          />
+          <p class="error" id="pwErr"></p>
+          <br />
 
           <label class="char-form__label" for="char-form-name"
             >Confirm your password:</label
@@ -91,7 +95,9 @@
             class="char-form__field"
             name="confirmedPassword"
             id="char-form-confirmedPassword"
-          /><br />
+          />
+          <p class="error" id="confirmPwErr"></p>
+          <br />
 
           <label for="talisman" class="char-form__label">Your talisman:</label
           ><br />
@@ -100,7 +106,9 @@
             class="char-form__field"
             name="talisman"
             id="char-form-talisman"
-          /><br />
+          />
+          <p class="error" id="talismanErr"></p>
+          <br />
           <label for="char-form-battle-cry" class="char-form__label"
             >Your battle cry:</label
           ><br />
@@ -109,7 +117,9 @@
             class="char-form__field"
             name="battleCry"
             id="char-form-battle-cry"
-          /><br />
+          />
+          <p class="error" id="battleErr"></p>
+          <br />
         </div>
         <div class="char-form__right">
           <!-- column of powers as radio buttons disguised as images -->
@@ -213,6 +223,7 @@
               class="char-form__radio-img"
             />
           </label>
+          <p class="error" id="powerErr"></p>
         </div>
         <button
           class="char-form__submit"
@@ -246,5 +257,6 @@
     <!-- load js -->
     <script src="public/js/request.js"></script>
     <script src="public/js/main.js"></script>
+    <script src="public/js/form-validation.js"></script>
   </body>
 </html>
