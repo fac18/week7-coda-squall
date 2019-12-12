@@ -116,7 +116,12 @@ const handleLogIn = (request, response) => {
         response.writeHead(500, { "content-type": "text/html" });
         response.end("<h1>Sorry, a problem on our end!</h1>");
       } else {
-        bcrypt.compare(userAut.password, hashedPassword, (err, match) => {
+        console.log(
+          "userAth password and hashedpassword",
+          userAuth.password,
+          hashedPassword
+        );
+        bcrypt.compare(userAuth.password, hashedPassword, (err, match) => {
           if (err) {
             console.log(err);
             response.writeHead(500, { "content-type": "text/html" });
@@ -128,11 +133,15 @@ const handleLogIn = (request, response) => {
                 name: userAuth.name
               };
               jwt.sign(payload, SECRET, (err, token) => {
-                // 1. write head token as cookie
-                // 2. sent to home location '/'
+                response.writeHead(302, {
+                  "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
+                  Location: "/"
+                });
+                response.end();
               });
             } else {
-              console.log("Bad credentials!");
+              response.writeHead(401, { "content-type": "text/html" });
+              response.end("<h1>Bad authentication</h1>");
             }
           }
         });
@@ -161,5 +170,6 @@ module.exports = {
   handleCreateChar,
   handleGetChar,
   handleGetAllChar,
+  handleLogIn,
   handle404
 };
