@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "build": "node src/database/run_build.js",
     "test": "NODE_ENV=test nyc --reporter=lcov tape tests/*test.js | tap-spec",
     "start": "node src/server.js",
     "coverage": "NODE_ENV=test codecov",
@@ -38,7 +39,10 @@
     "tape": "^4.11.0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie": "^0.4.0",
     "env2": "^2.2.2",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^7.14.0"
   }
 }

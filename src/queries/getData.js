@@ -28,8 +28,20 @@ const getPow = cb => {
   });
 };
 
+const getHashedPassword = (name, cb) => {
+  dbConnection.query(
+    `SELECT hashed_password FROM characters WHERE name=$1`,
+    [name],
+    (err, result) => {
+      if (err) return cb(err);
+      cb(null, result.rows[0].hashed_password);
+    }
+  );
+};
+
 module.exports = {
   getAllChar,
   getChar,
-  getPow
+  getPow,
+  getHashedPassword
 };
