@@ -80,6 +80,22 @@ const getExistingPlayer = cookieString => {
   });
 };
 
+// define function for deleting an existing player
+const deleteExistingPlayer = cookieString => {
+  backendCall(`/delete-char`, "DELETE", cookieString, res => {})
+}
+
+const deleteButton = document.querySelector("#delete-button");
+deleteButton.addEventListener("click", (e) => {
+  const result = window.confirm("Are you sure you want to delete your character?");
+  if (result) {
+    deleteExistingPlayer(document.cookie);
+    document.cookie = "player=0; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+  } else {
+    e.preventDefault();
+  }
+});
+
 // populate player profile
 window.onload = () => {
   const allCookies = document.cookie;

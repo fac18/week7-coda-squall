@@ -1,5 +1,6 @@
 const getData = require("./queries/getData");
 const postData = require("./queries/postData");
+const deleteData = require("./queries/deleteData");
 const fs = require("fs");
 const querystring = require("querystring");
 const url = require("url");
@@ -298,8 +299,45 @@ const handlePlayerArea = (request, response) => {
   // there is no cookie, deliver 401
   console.log(3)
   response.writeHead(401, { "content-type": "text/html" });
+
+const getChar = (name, cb) => {
+  dbConnection.query(
+    `SELECT name,powers_id,talisman,battle_cry,score FROM characters WHERE name=$1`,
+    [name],
+    (err, result) => {
+      if (err) return cb(err);
+      cb(null, result.rows);
+    }
+  );
+};
   response.end('<h1>Bad authentication</h1>');
   }
+}
+
+const handleDeleteChar = (request, response) => {
+  let data = "";
+  request.on("data", chunk => {
+    data += chunk;
+  });
+  request.on("error", error => {
+    throw error;
+  });
+  request.on("end", () => {
+    const clientToken = cookie.parse(data).player
+    jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
+      // legitimacy of jwt already verified by handlePlayerArea handler
+      deleteData.deleteChar(clientDecoded.name, (err, res) => {
+        if (err) {
+          console.log(err);
+          response.writeHead(404, { "content-type": "text/html" });
+          response.end("<h1> This is not a character. Try again.</h1>");
+        } else {
+          response.writeHead(200, { "content-type": "application/json"});
+          response.end();
+        }
+      });
+    })
+  })
 }
 
 const handle404 = (request, response) => {
@@ -325,5 +363,6 @@ module.exports = {
   handleLogIn,
   handleLogOut,
   handlePlayerArea,
+  handleDeleteChar,
   handle404
 };

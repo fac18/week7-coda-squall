@@ -19,6 +19,8 @@ const router = (request, response) => {
     handlers.handleLogOut(request, response);
   } else if (endpoint === "/player-area") {
     handlers.handlePlayerArea(request, response);
+  } else if (endpoint === "/delete-char") {
+    handlers.handleDeleteChar(request, response)
   } else {
     handlers.handle404(request, response);
   }
