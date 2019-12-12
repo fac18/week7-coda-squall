@@ -98,18 +98,45 @@ const handleCreateChar = (request, response) => {
   });
   request.on("end", () => {
     const character = querystring.parse(data);
-    postData(character, (error, res) => {
+    console.log(character);
+    bcrypt.genSalt(10, (error, salt) => {
       if (error) {
         console.log(error);
         response.writeHead(500, { "content-type": "text/html" });
         response.end("<h1>Sorry, a problem on our end!</h1>");
       } else {
-        response.writeHead(201, { Location: `/` });
-        response.end();
-      }
-    });
+        console.log(`Character password: `, character.password);
+        console.log(`Salt: `, salt);
+        bcrypt.hash(character.password, salt, (error, hashedPassword) => {
+          if (error) {
+            console.log(error);
+            response.writeHead(500, { "content-type": "text/html" });
+            response.end("<h1>Sorry, a problem on our end!</h1>");
+          } else {
+            postData({name: character.name, hashed_password: hashedPassword, talisman: character.talisman, battle_cry: character.battleCry, powers_id: character.powerId}, (error, res) => {
+              if (error) {
+                console.log(error);
+                response.writeHead(500, { "content-type": "text/html" });
+                response.end("<h1>Sorry, a problem on our end!</h1>");
+              } else {
+                const payload = {
+                  name: character.name
+                };
+                jwt.sign(payload, SECRET, (err, token) => {
+                  response.writeHead(302, {
+                    "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
+                    Location: "/"
+                  });
+                  response.end();
+              })
+            };
+          })
+        }
+      })
+    };
   });
-};
+});
+}
 
 const handleGetChar = (request, response, endpoint) => {
   // endpoint is of the form '/get-char?q=[name]'
