@@ -134,30 +134,39 @@ const handleCreateChar = (request, response) => {
             response.writeHead(500, { "content-type": "text/html" });
             response.end("<h1>Sorry, a problem on our end!</h1>");
           } else {
-            postData({name: character.name, hashed_password: hashedPassword, talisman: character.talisman, battle_cry: character.battleCry, powers_id: character.powerId}, (error, res) => {
-              if (error) {
-                console.log(error);
-                response.writeHead(500, { "content-type": "text/html" });
-                response.end("<h1>Sorry, a problem on our end!</h1>");
-              } else {
-                const payload = {
-                  name: character.name
-                };
-                jwt.sign(payload, SECRET, (err, token) => {
-                  response.writeHead(302, {
-                    "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
-                    Location: "/"
+            postData(
+              {
+                name: character.name,
+                hashed_password: hashedPassword,
+                talisman: character.talisman,
+                battle_cry: character.battleCry,
+                powers_id: character.powerId
+              },
+              (error, res) => {
+                if (error) {
+                  console.log(error);
+                  response.writeHead(500, { "content-type": "text/html" });
+                  response.end("<h1>Sorry, a problem on our end!</h1>");
+                } else {
+                  const payload = {
+                    name: character.name
+                  };
+                  jwt.sign(payload, SECRET, (err, token) => {
+                    response.writeHead(302, {
+                      "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
+                      Location: "/"
+                    });
+                    response.end();
                   });
-                  response.end();
-              })
-            };
-          })
-        }
-      })
-    };
+                }
+              }
+            );
+          }
+        });
+      }
+    });
   });
-});
-}
+};
 
 const handleGetChar = (request, response, endpoint) => {
   // endpoint is of the form '/get-char?q=[name]'

@@ -17,6 +17,9 @@ const power4 = document.getElementById("power-id-4");
 const power5 = document.getElementById("power-id-5");
 const power6 = document.getElementById("power-id-6");
 const power7 = document.getElementById("power-id-7");
+const allPowerLabels = document.getElementsByClassName(
+  "char-form__radio-label"
+);
 
 let checkPw = () => {
   if (charPw.validity.patternMismatch) {
@@ -33,7 +36,6 @@ let checkPw = () => {
 };
 
 const checkConfirmPw = () => {
-  console.log("Are you running?");
   if (charPw.value != charConfirmPw.value) {
     displayErr(confirmPwErr, "Passwords do not match");
   } else if (charConfirmPw.validity.valueMissing) {
@@ -69,34 +71,39 @@ const checkUniqueUser = cb => {
 };
 
 const checkForm = () => {
-  if (!checkName()) {
+  if (!nameOk) {
     event.preventDefault();
-  }
-  if (!checkPw()) {
+  } else if (!checkPw()) {
     event.preventDefault();
-  }
-  if (!checkConfirmPw()) {
+  } else if (!checkConfirmPw()) {
     event.preventDefault();
-  }
-  if (!checkBattle()) {
+  } else if (!checkBattle()) {
     event.preventDefault();
-  }
-  if (!checkTalisman()) {
+  } else if (!checkTalisman()) {
     event.preventDefault();
-  }
-  if (
-    power1.checked ||
-    power2.checked ||
-    power3.checked ||
-    power4.checked ||
-    power5.checked ||
-    power6.checked ||
-    power7.checked
-  ) {
-    displayErr(powerErr, "Please choose a power");
+  } else if (!checkPower()) {
     event.preventDefault();
   } else {
+    return true;
+  }
+};
+
+const checkPower = () => {
+  if (
+    !(
+      power1.checked ||
+      power2.checked ||
+      power3.checked ||
+      power4.checked ||
+      power5.checked ||
+      power6.checked ||
+      power7.checked
+    )
+  ) {
+    displayErr(powerErr, "Please choose a power");
+  } else {
     displayErr(powerErr, "");
+    return true;
   }
 };
 
@@ -104,16 +111,19 @@ function displayErr(errElem, errMsg) {
   errElem.innerText = errMsg;
 }
 
+let nameOk = false;
+
 const checkName = () => {
   checkUniqueUser(char => {
-    console.log(char);
     if (char.length != 0) {
       displayErr(nameErr, "Player name is already taken");
+      nameOk = false;
     } else if (!charName.value) {
       displayErr(nameErr, "Please enter a name");
+      nameOk = false;
     } else {
       displayErr(nameErr, "");
-      return true;
+      nameOk = true;
     }
   });
 };
@@ -126,3 +136,9 @@ battleCry.addEventListener("focusout", checkBattle);
 talisman.addEventListener("focusout", checkTalisman);
 
 charForm.addEventListener("submit", checkForm);
+
+Array.from(allPowerLabels).forEach(power => {
+  power.addEventListener("click", () => {
+    displayErr(powerErr, "");
+  });
+});
