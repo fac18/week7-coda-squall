@@ -60,7 +60,7 @@
     <!-- form to create new character -->
     <section class="form-section">
       <h2 class="form-heading">Create new player</h2>
-      <form action="" method="" class="char-form">
+      <form action="/create-char" method="POST" class="char-form">
         <div class="char-form__left">
           <!-- normal text fields for name, talisman, battle cry -->
           <label class="char-form__label" for="char-form-name"
@@ -108,7 +108,7 @@
           <input
             type="text"
             class="char-form__field"
-            name="char-form-talisman"
+            name="talisman"
             id="char-form-talisman"
           />
           <p id="talismanErr" class="error"></p>
@@ -119,7 +119,7 @@
           <input
             type="text"
             class="char-form__field"
-            name="battle-cry"
+            name="battleCry"
             id="char-form-battle-cry"
           />
           <p id="battleErr" class="error"></p>
@@ -132,7 +132,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="power-id"
+              name="powerId"
               value="1"
               id="power-id-1"
             />
@@ -146,7 +146,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="power-id"
+              name="powerId"
               value="2"
               id="power-id-2"
             />
@@ -160,7 +160,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="power-id"
+              name="powerId"
               value="3"
               id="power-id-3"
             />
@@ -174,7 +174,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="power-id"
+              name="powerId"
               value="4"
               id="power-id-4"
             />
@@ -189,7 +189,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="power-id"
+              name="powerId"
               value="5"
               id="power-id-5"
             />
@@ -203,7 +203,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="power-id"
+              name="powerId"
               value="6"
               id="power-id-6"
             />
@@ -217,7 +217,7 @@
             <input
               type="radio"
               class="char-form__radio-input"
-              name="power-id"
+              name="powerId"
               value="7"
               id="power-id-7"
             />

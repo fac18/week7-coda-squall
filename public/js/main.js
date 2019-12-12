@@ -126,32 +126,32 @@ window.onload = () => {
 
 // on submission of create char form, assemble character and post to backend
 // then populate DOM with same character object
-postButton.addEventListener("click", e => {
-  // prevent form's in built POST request
-  e.preventDefault();
+// postButton.addEventListener("click", e => {
+//   // prevent form's in built POST request
+//   e.preventDefault();
 
-  // assemble character querystring to send to backend, and obj for population
-  const name = document.querySelector("#char-form-name").value;
-  const talisman = document.querySelector("#char-form-talisman").value;
-  const battleCry = document.querySelector("#char-form-battle-cry").value;
-  const power = document.querySelector(".char-form__radio-input:checked").value;
-  let charQuery = `name=${name}&talisman=${talisman}&battle_cry=${battleCry}&powers_id=${power}`;
-  let charObj = {
-    name,
-    talisman,
-    battle_cry: battleCry,
-    powers_id: power,
-    score: 0
-  };
+//   // assemble character querystring to send to backend, and obj for population
+//   const name = document.querySelector("#char-form-name").value;
+//   const talisman = document.querySelector("#char-form-talisman").value;
+//   const battleCry = document.querySelector("#char-form-battle-cry").value;
+//   const power = document.querySelector(".char-form__radio-input:checked").value;
+//   let charQuery = `name=${name}&talisman=${talisman}&battle_cry=${battleCry}&powers_id=${power}`;
+//   let charObj = {
+//     name,
+//     talisman,
+//     battle_cry: battleCry,
+//     powers_id: power,
+//     score: 0
+//   };
 
-  // make post request with backendCall
-  backendCall("/create-char", "POST", charQuery, res => {
-    // console.log(res)
-  });
+//   // make post request with backendCall
+//   backendCall("/create-char", "POST", charQuery, res => {
+//     // console.log(res)
+//   });
 
-  // populate DOM with char info
-  populatePlayer(charObj);
+//   // populate DOM with char info
+//   populatePlayer(charObj);
 
   // scroll to player-section
   // IMPLEMENT
-});
+// });

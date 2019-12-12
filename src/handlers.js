@@ -12,44 +12,65 @@ const SECRET = process.env.SECRET;
 const handleHome = (request, response) => {
   let clientCookie = request.headers.cookie;
   if (clientCookie) {
+    //there are cookies, check what they are
     let clientToken = cookie.parse(clientCookie).player;
-    jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
-      if (err) {
-        console.log(err);
-        response.writeHead(500, { "content-type": "text/html" });
-        response.end("<h1>Sorry, a problem on our end!</h1>");
-      } else {
-        if (clientDecoded) {
-          const filePath = path.join(
-            __dirname,
-            "../public/index-loggedin.html"
-          );
-          fs.readFile(filePath, (err, file) => {
-            if (err) {
-              console.log(err);
-              response.writeHead(500, { "content-type": "text/html" });
-              response.end("<h1>Sorry, a problem on our end!</h1>");
-            } else {
-              response.writeHead(200, { "content-type": "text/html" });
-              response.end(file);
-            }
-          });
+    //check that there actually is a cookie called player
+    if (clientToken) {
+      jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
+        if (err) {
+          //in case there is an error with jwt verify
+          console.log(err);
+          response.writeHead(500, { "content-type": "text/html" });
+          response.end("<h1>Sorry, a problem on our end!</h1>");
         } else {
-          const filePath = path.join(__dirname, "../public/index.html");
-          fs.readFile(filePath, (err, file) => {
-            if (err) {
-              console.log(err);
-              response.writeHead(500, { "content-type": "text/html" });
-              response.end("<h1>Sorry, a problem on our end!</h1>");
-            } else {
-              response.writeHead(200, { "content-type": "text/html" });
-              response.end(file);
-            }
-          });
+          //check the token is valid, if so send to logged in home
+          if (clientDecoded) {
+            const filePath = path.join(
+              __dirname,
+              "../public/index-loggedin.html"
+            );
+            fs.readFile(filePath, (err, file) => {
+              if (err) {
+                console.log(err);
+                response.writeHead(500, { "content-type": "text/html" });
+                response.end("<h1>Sorry, a problem on our end!</h1>");
+              } else {
+                response.writeHead(200, { "content-type": "text/html" });
+                response.end(file);
+              }
+            });
+          } else {
+            //if the token was not valid (they had a cookie called player but not one we recognise) send them back to normal home
+            const filePath = path.join(__dirname, "../public/index.html");
+            fs.readFile(filePath, (err, file) => {
+              if (err) {
+                console.log(err);
+                response.writeHead(500, { "content-type": "text/html" });
+                response.end("<h1>Sorry, a problem on our end!</h1>");
+              } else {
+                response.writeHead(200, { "content-type": "text/html" });
+                response.end(file);
+              }
+            });
+          }
         }
-      }
-    });
+      });
+    } else {
+      //there is a cookie but not a player cookie, go to normal home
+      const filePath = path.join(__dirname, "../public/index.html");
+      fs.readFile(filePath, (err, file) => {
+        if (err) {
+          console.log(err);
+          response.writeHead(500, { "content-type": "text/html" });
+          response.end("<h1>Sorry, a problem on our end!</h1>");
+        } else {
+          response.writeHead(200, { "content-type": "text/html" });
+          response.end(file);
+        }
+      });
+    }
   } else {
+    //there is no cookie at all, go to normal home
     const filePath = path.join(__dirname, "../public/index.html");
     fs.readFile(filePath, (err, file) => {
       if (err) {
@@ -98,18 +119,45 @@ const handleCreateChar = (request, response) => {
   });
   request.on("end", () => {
     const character = querystring.parse(data);
-    postData(character, (error, res) => {
+    console.log(character);
+    bcrypt.genSalt(10, (error, salt) => {
       if (error) {
         console.log(error);
         response.writeHead(500, { "content-type": "text/html" });
         response.end("<h1>Sorry, a problem on our end!</h1>");
       } else {
-        response.writeHead(201, { Location: `/` });
-        response.end();
-      }
-    });
+        console.log(`Character password: `, character.password);
+        console.log(`Salt: `, salt);
+        bcrypt.hash(character.password, salt, (error, hashedPassword) => {
+          if (error) {
+            console.log(error);
+            response.writeHead(500, { "content-type": "text/html" });
+            response.end("<h1>Sorry, a problem on our end!</h1>");
+          } else {
+            postData({name: character.name, hashed_password: hashedPassword, talisman: character.talisman, battle_cry: character.battleCry, powers_id: character.powerId}, (error, res) => {
+              if (error) {
+                console.log(error);
+                response.writeHead(500, { "content-type": "text/html" });
+                response.end("<h1>Sorry, a problem on our end!</h1>");
+              } else {
+                const payload = {
+                  name: character.name
+                };
+                jwt.sign(payload, SECRET, (err, token) => {
+                  response.writeHead(302, {
+                    "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
+                    Location: "/"
+                  });
+                  response.end();
+              })
+            };
+          })
+        }
+      })
+    };
   });
-};
+});
+}
 
 const handleGetChar = (request, response, endpoint) => {
   // endpoint is of the form '/get-char?q=[name]'
