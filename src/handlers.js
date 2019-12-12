@@ -11,10 +11,8 @@ const SECRET = process.env.SECRET;
 
 const handleHome = (request, response) => {
   let clientCookie = request.headers.cookie;
-  console.log({ clientCookie });
   if (clientCookie) {
     let clientToken = cookie.parse(clientCookie).player;
-    console.log({ clientToken });
     jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
       if (err) {
         console.log(err);
@@ -186,6 +184,14 @@ const handleLogIn = (request, response) => {
   });
 };
 
+const handleLogOut = (request, response) => {
+  response.writeHead(302, {
+    "Set-cookie": "player=0; Max-Age=0",
+    Location: "/"
+  });
+  response.end();
+};
+
 const handle404 = (request, response) => {
   const filePath = path.join(__dirname, "../public/404.html");
   fs.readFile(filePath, (err, file) => {
@@ -207,5 +213,6 @@ module.exports = {
   handleGetChar,
   handleGetAllChar,
   handleLogIn,
+  handleLogOut,
   handle404
 };

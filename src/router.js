@@ -15,6 +15,8 @@ const router = (request, response) => {
     handlers.handleGetAllChar(request, response);
   } else if (endpoint === "/login") {
     handlers.handleLogIn(request, response);
+  } else if (endpoint === "/logout") {
+    handlers.handleLogOut(request, response);
   } else {
     handlers.handle404(request, response);
   }
