@@ -33,15 +33,15 @@ const populatePlayer = char => {
   const playerPowerName = document.createElement("p");
   const playerPowerNameLabel = document.createElement("span");
   const playerPowerNameValue = document.createElement("span");
-  const playerScore = document.createElement('p');
-  const playerScoreLabel = document.createElement('span');
-  const playerScoreValue = document.createElement('span');
+  const playerScore = document.createElement("p");
+  const playerScoreLabel = document.createElement("span");
+  const playerScoreValue = document.createElement("span");
 
   //add classes to labels so they can be formatted
   playerTalismanLabel.classList.add("selected-player-field-label");
   playerBattleCryLabel.classList.add("selected-player-field-label");
   playerPowerNameLabel.classList.add("selected-player-field-label");
-  playerScoreLabel.classList.add('selected-player-field-label');
+  playerScoreLabel.classList.add("selected-player-field-label");
 
   //add text to fields
   playerName.textContent = char.name;
@@ -51,8 +51,7 @@ const populatePlayer = char => {
   playerBattleCryValue.textContent = `${char.battle_cry}`;
   playerPowerNameLabel.textContent = `Power Name: `;
   playerPowerNameValue.textContent = `${powerMap[char.powers_id]}`;
-  playerScoreLabel.textContent = `Score: `
-  console.log(char.score.toString())
+  playerScoreLabel.textContent = `Score: `;
   playerScoreValue.textContext = char.score.toString();
 
   //append all elements
@@ -82,15 +81,17 @@ const getExistingPlayer = cookieString => {
 
 // define function for deleting an existing player
 const deleteExistingPlayer = cookieString => {
-  backendCall(`/delete-char`, "DELETE", cookieString, res => {})
-}
+  backendCall(`/delete-char`, "DELETE", cookieString, res => {});
+};
 
 const deleteButton = document.querySelector("#delete-button");
-deleteButton.addEventListener("click", (e) => {
-  const result = window.confirm("Are you sure you want to delete your character?");
+deleteButton.addEventListener("click", e => {
+  const result = window.confirm(
+    "Are you sure you want to delete your character?"
+  );
   if (result) {
     deleteExistingPlayer(document.cookie);
-    document.cookie = "player=0; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    document.cookie = "player=0; expires = Thu, 01 Jan 1970 00:00:00 GMT";
   } else {
     e.preventDefault();
   }
@@ -99,5 +100,5 @@ deleteButton.addEventListener("click", (e) => {
 // populate player profile
 window.onload = () => {
   const allCookies = document.cookie;
-  getExistingPlayer(allCookies)
+  getExistingPlayer(allCookies);
 };
