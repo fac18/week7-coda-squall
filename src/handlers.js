@@ -153,7 +153,7 @@ const handleCreateChar = (request, response) => {
                   };
                   jwt.sign(payload, SECRET, (err, token) => {
                     response.writeHead(302, {
-                      "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
+                      "Set-cookie": `player=${token}; Max-Age=3600`,
                       Location: "/"
                     });
                     response.end();
