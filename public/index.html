@@ -71,27 +71,37 @@
             class="char-form__field"
             name="name"
             id="char-form-name"
-          /><br />
+          />
+          <p id="nameErr" class="error"></p>
+          <br />
 
           <label class="char-form__label" for="char-form-password"
             >New password:</label
           ><br />
           <input
             type="password"
+            required
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             class="char-form__field"
             name="password"
             id="char-form-password"
-          /><br />
+          />
+          <p id="passwordErr" class="error"></p>
+          <br />
 
           <label class="char-form__label" for="char-form-name"
             >Confirm your password:</label
           ><br />
           <input
             type="password"
+            required
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
             class="char-form__field"
             name="confirmedPassword"
             id="char-form-confirmedPassword"
-          /><br />
+          />
+          <p id="confirmPwErr" class="error"></p>
+          <br />
 
           <label for="talisman" class="char-form__label">Your talisman:</label
           ><br />
@@ -100,7 +110,9 @@
             class="char-form__field"
             name="char-form-talisman"
             id="char-form-talisman"
-          /><br />
+          />
+          <p id="talismanErr" class="error"></p>
+          <br />
           <label for="char-form-battle-cry" class="char-form__label"
             >Your battle cry:</label
           ><br />
@@ -109,7 +121,9 @@
             class="char-form__field"
             name="battle-cry"
             id="char-form-battle-cry"
-          /><br />
+          />
+          <p id="battleErr" class="error"></p>
+          <br />
         </div>
         <div class="char-form__right">
           <!-- column of powers as radio buttons disguised as images -->
@@ -213,6 +227,7 @@
               class="char-form__radio-img"
             />
           </label>
+          <p id="powerErr" class="error"></p>
         </div>
         <button
           class="char-form__submit"
@@ -246,5 +261,6 @@
     <!-- load js -->
     <script src="public/js/request.js"></script>
     <script src="public/js/main.js"></script>
+    <script src="public/js/form-validation.js"></script>
   </body>
 </html>
