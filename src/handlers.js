@@ -119,15 +119,12 @@ const handleCreateChar = (request, response) => {
   });
   request.on("end", () => {
     const character = querystring.parse(data);
-    console.log(character);
     bcrypt.genSalt(10, (error, salt) => {
       if (error) {
         console.log(error);
         response.writeHead(500, { "content-type": "text/html" });
         response.end("<h1>Sorry, a problem on our end!</h1>");
       } else {
-        console.log(`Character password: `, character.password);
-        console.log(`Salt: `, salt);
         bcrypt.hash(character.password, salt, (error, hashedPassword) => {
           if (error) {
             console.log(error);
@@ -177,8 +174,6 @@ const handleGetChar = (request, response) => {
     throw error;
   });
   request.on("end", () => {
-    console.log("cookie ", request.headers.cookie);
-    console.log("data ", data);
     const clientToken = cookie.parse(data).player;
     // const clientToken = cookie.parse(request.headers.cookie).player;
     jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
@@ -307,7 +302,6 @@ const handlePlayerArea = (request, response) => {
               }
             });
           } else {
-            console.log(1);
             //if the token was not valid deliver 401
             response.writeHead(401, { "content-type": "text/html" });
             response.end("<h1>Bad authentication</h1>");
@@ -315,14 +309,12 @@ const handlePlayerArea = (request, response) => {
         }
       });
     } else {
-      console.log(2);
       //there is a cookie but not a player cookie, deliver 401
       response.writeHead(401, { "content-type": "text/html" });
       response.end("<h1>Bad authentication</h1>");
     }
   } else {
     // there is no cookie, deliver 401
-    console.log(3);
     response.writeHead(401, { "content-type": "text/html" });
 
     // const getChar = (name, cb) => {

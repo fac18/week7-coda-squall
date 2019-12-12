@@ -35,7 +35,7 @@
       <h2 class="form-heading">Welcome back</h2>
       <form action="/login" method="POST" class="return-form">
         <label for="name" class="return-form__label">Player name:</label>
-        <input type="text" class="return-form__field" name="name" id="name" />
+        <input type="text" class="return-form__field" name="name" id="name" required />
         <br />
         <label for="login-password" class="return-form__password"
           >Password:
@@ -45,6 +45,7 @@
           class="return-form__field"
           name="password"
           id="login-password"
+          required
         /><br />
         <button
           type="submit"
@@ -71,6 +72,7 @@
             class="char-form__field"
             name="name"
             id="char-form-name"
+            required
           />
           <p class="error" id="nameErr"></p>
           <br />
@@ -83,6 +85,7 @@
             class="char-form__field"
             name="password"
             id="char-form-password"
+            required
           />
           <p class="error" id="pwErr"></p>
           <br />
@@ -95,6 +98,7 @@
             class="char-form__field"
             name="confirmedPassword"
             id="char-form-confirmedPassword"
+            required
           />
           <p class="error" id="confirmPwErr"></p>
           <br />
@@ -106,6 +110,7 @@
             class="char-form__field"
             name="talisman"
             id="char-form-talisman"
+            required
           />
           <p class="error" id="talismanErr"></p>
           <br />
@@ -117,6 +122,7 @@
             class="char-form__field"
             name="battleCry"
             id="char-form-battle-cry"
+            required
           />
           <p class="error" id="battleErr"></p>
           <br />
