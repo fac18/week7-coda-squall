@@ -34,7 +34,7 @@ const getHashedPassword = (name, cb) => {
     [name],
     (err, result) => {
       if (err) return cb(err);
-      cb(null, result.rows[0].hashedPassword);
+      cb(null, result.rows[0].hashed_password);
     }
   );
 };

@@ -14,7 +14,7 @@ CREATE TABLE powers (
 CREATE TABLE characters (
     id SERIAL PRIMARY KEY,
     name VARCHAR(20) NOT NULL,
-    hashed_password VARCHAR(50) NOT NULL,
+    hashed_password VARCHAR(100) NOT NULL,
     powers_id INTEGER REFERENCES powers(id),
     talisman VARCHAR(30) NOT NULL,
     battle_cry VARCHAR(200) NOT NULL,
@@ -30,7 +30,8 @@ INSERT INTO powers (name, description, image_path) VALUES
 ('Shape shifting', 'Description here...', 'shape-shifting.png'),
 ('Time manipulation', 'Description here...', 'time-manipulation.png');
 
-INSERT INTO characters (name, powers_id, talisman, battle_cry) VALUES
+INSERT INTO characters (name, hashed_password, powers_id, talisman, battle_cry) VALUES
 ('Travis', '$2a$10$mCNfqtPuPnUv1XsTZNlUku6AB1/6XEypARY5vkL63O2Am7dHZQ7EG', 4, 'golden moustache', 'Your build is not passing');
 
 COMMIT;
+
