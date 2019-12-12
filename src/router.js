@@ -17,6 +17,8 @@ const router = (request, response) => {
     handlers.handleLogIn(request, response);
   } else if (endpoint === "/logout") {
     handlers.handleLogOut(request, response);
+  } else if (endpoint === "/player-area") {
+    handlers.handlePlayerArea(request, response);
   } else {
     handlers.handle404(request, response);
   }

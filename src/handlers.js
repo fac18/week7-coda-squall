@@ -70,7 +70,6 @@ const handleHome = (request, response) => {
       });
     }
   } else {
-    //there is no cookie at all, go to normal home
     const filePath = path.join(__dirname, "../public/index.html");
     fs.readFile(filePath, (err, file) => {
       if (err) {
@@ -83,7 +82,7 @@ const handleHome = (request, response) => {
       }
     });
   }
-};
+}
 
 const handlePublic = (request, response) => {
   const extension = path.extname(request.url).split(".")[1];
@@ -189,7 +188,7 @@ const handleLogIn = (request, response) => {
               };
               jwt.sign(payload, SECRET, (err, token) => {
                 response.writeHead(302, {
-                  "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
+                  "Set-cookie": `player=${token}; HttpOnly; Max-Age=86400`,
                   Location: "/"
                 });
                 response.end();
@@ -213,6 +212,58 @@ const handleLogOut = (request, response) => {
   response.end();
 };
 
+const handlePlayerArea = (request, response) => {
+  let clientCookie = request.headers.cookie;
+  if (clientCookie) {
+    //there are cookies, check what they are
+    let clientToken = cookie.parse(clientCookie).player;
+    //check that there actually is a cookie called player
+    if (clientToken) {
+      jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
+        if (err) {
+          //in case there is an error with jwt verify
+          console.log(err);
+          response.writeHead(500, { "content-type": "text/html" });
+          response.end("<h1>Sorry, a problem on our end!</h1>");
+        } else {
+          //check the token is valid, if so send to player area
+          if (clientDecoded) {
+            const filePath = path.join(
+              __dirname,
+              "../public/player-area.html"
+            );
+            fs.readFile(filePath, (err, file) => {
+              if (err) {
+                console.log(err);
+                response.writeHead(500, { "content-type": "text/html" });
+                response.end("<h1>Sorry, a problem on our end!</h1>");
+              } else {
+                response.writeHead(200, { "content-type": "text/html" });
+                response.end(file);
+              }
+            });
+          } else {
+            console.log(1)
+            //if the token was not valid deliver 401
+            response.writeHead(401, { "content-type": "text/html" });
+            response.end('<h1>Bad authentication</h1>');
+          }
+        }
+      });
+    } else {
+      console.log(2)
+      //there is a cookie but not a player cookie, deliver 401
+      response.writeHead(401, { "content-type": "text/html" });
+      response.end('<h1>Bad authentication</h1>');
+    }
+  } else {
+  // there is no cookie, deliver 401
+  console.log(3)
+  response.writeHead(401, { "content-type": "text/html" });
+  response.end('<h1>Bad authentication</h1>');
+  }
+}
+
 const handle404 = (request, response) => {
   const filePath = path.join(__dirname, "../public/404.html");
   fs.readFile(filePath, (err, file) => {
@@ -235,5 +286,6 @@ module.exports = {
   handleGetAllChar,
   handleLogIn,
   handleLogOut,
+  handlePlayerArea,
   handle404
 };
