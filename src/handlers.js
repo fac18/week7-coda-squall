@@ -131,20 +131,31 @@ const handleCreateChar = (request, response) => {
   });
 };
 
-const handleGetChar = (request, response, endpoint) => {
-  // endpoint is of the form '/get-char?q=[name]'
-  let name = endpoint.split("=")[1];
-  getData.getChar(name, (err, res) => {
-    if (err) {
-      console.log(err);
-      response.writeHead(404, { "content-type": "text/html" });
-      response.end("<h1> This is not a character. Try again.</h1>");
-    } else {
-      // here 'res' is an object containing all data for character with given name
-      response.writeHead(200, { "content-type": "application/json" });
-      response.end(JSON.stringify(res));
-    }
+const handleGetChar = (request, response) => {
+  let data = "";
+  request.on("data", chunk => {
+    data += chunk;
   });
+  request.on("error", error => {
+    throw error;
+  });
+  request.on("end", () => {
+    const clientToken = cookie.parse(data).player
+    jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
+      // legitimacy of jwt already verified by handlePlayerArea handler
+      getData.getChar(clientDecoded.name, (err, res) => {
+        if (err) {
+          console.log(err);
+          response.writeHead(404, { "content-type": "text/html" });
+          response.end("<h1> This is not a character. Try again.</h1>");
+        } else {
+          // here 'res' is an object containing all (public) data for character with given name
+          response.writeHead(200, { "content-type": "application/json" });
+          response.end(JSON.stringify(res));
+        }
+      });
+    })
+  })
 };
 
 const handleGetAllChar = (request, response) => {
@@ -188,7 +199,7 @@ const handleLogIn = (request, response) => {
               };
               jwt.sign(payload, SECRET, (err, token) => {
                 response.writeHead(302, {
-                  "Set-cookie": `player=${token}; HttpOnly; Max-Age=86400`,
+                  "Set-cookie": `player=${token}; Max-Age=86400`,
                   Location: "/"
                 });
                 response.end();

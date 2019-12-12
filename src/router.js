@@ -10,7 +10,7 @@ const router = (request, response) => {
   } else if (endpoint === "/create-char") {
     handlers.handleCreateChar(request, response);
   } else if (endpoint.startsWith("/get-char")) {
-    handlers.handleGetChar(request, response, endpoint);
+    handlers.handleGetChar(request, response);
   } else if (endpoint === "/get-all-char") {
     handlers.handleGetAllChar(request, response);
   } else if (endpoint === "/login") {
