@@ -20,7 +20,9 @@ const router = (request, response) => {
   } else if (endpoint === "/player-area") {
     handlers.handlePlayerArea(request, response);
   } else if (endpoint === "/delete-char") {
-    handlers.handleDeleteChar(request, response)
+    handlers.handleDeleteChar(request, response);
+  } else if (endpoint.startsWith("/check-char")) {
+    handlers.handleCheckChar(request, response);
   } else {
     handlers.handle404(request, response);
   }

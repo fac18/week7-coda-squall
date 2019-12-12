@@ -83,7 +83,7 @@ const handleHome = (request, response) => {
       }
     });
   }
-}
+};
 
 const handlePublic = (request, response) => {
   const extension = path.extname(request.url).split(".")[1];
@@ -134,30 +134,39 @@ const handleCreateChar = (request, response) => {
             response.writeHead(500, { "content-type": "text/html" });
             response.end("<h1>Sorry, a problem on our end!</h1>");
           } else {
-            postData({name: character.name, hashed_password: hashedPassword, talisman: character.talisman, battle_cry: character.battleCry, powers_id: character.powerId}, (error, res) => {
-              if (error) {
-                console.log(error);
-                response.writeHead(500, { "content-type": "text/html" });
-                response.end("<h1>Sorry, a problem on our end!</h1>");
-              } else {
-                const payload = {
-                  name: character.name
-                };
-                jwt.sign(payload, SECRET, (err, token) => {
-                  response.writeHead(302, {
-                    "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
-                    Location: "/"
+            postData(
+              {
+                name: character.name,
+                hashed_password: hashedPassword,
+                talisman: character.talisman,
+                battle_cry: character.battleCry,
+                powers_id: character.powerId
+              },
+              (error, res) => {
+                if (error) {
+                  console.log(error);
+                  response.writeHead(500, { "content-type": "text/html" });
+                  response.end("<h1>Sorry, a problem on our end!</h1>");
+                } else {
+                  const payload = {
+                    name: character.name
+                  };
+                  jwt.sign(payload, SECRET, (err, token) => {
+                    response.writeHead(302, {
+                      "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
+                      Location: "/"
+                    });
+                    response.end();
                   });
-                  response.end();
-              })
-            };
-          })
-        }
-      })
-    };
+                }
+              }
+            );
+          }
+        });
+      }
+    });
   });
-});
-}
+};
 
 const handleGetChar = (request, response) => {
   let data = "";
@@ -168,7 +177,10 @@ const handleGetChar = (request, response) => {
     throw error;
   });
   request.on("end", () => {
-    const clientToken = cookie.parse(data).player
+    console.log("cookie ", request.headers.cookie);
+    console.log("data ", data);
+    const clientToken = cookie.parse(data).player;
+    // const clientToken = cookie.parse(request.headers.cookie).player;
     jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
       // legitimacy of jwt already verified by handlePlayerArea handler
       getData.getChar(clientDecoded.name, (err, res) => {
@@ -182,8 +194,8 @@ const handleGetChar = (request, response) => {
           response.end(JSON.stringify(res));
         }
       });
-    })
-  })
+    });
+  });
 };
 
 const handleGetAllChar = (request, response) => {
@@ -193,6 +205,22 @@ const handleGetAllChar = (request, response) => {
       response.writeHead(500, { "content-type": "text/html" });
       response.end("<h1> Sorry, there was a problem on our end! </h1>");
     } else {
+      response.writeHead(200, { "content-type": "application/json" });
+      response.end(JSON.stringify(res));
+    }
+  });
+};
+
+const handleCheckChar = (request, response) => {
+  // endpoint is of the form '/get-char?q=[name]'
+  let name = request.url.split("=")[1];
+  getData.getChar(name, (err, res) => {
+    if (err) {
+      console.log(err);
+      response.writeHead(404, { "content-type": "text/html" });
+      response.end("<h1> This is not a character. Try again.</h1>");
+    } else {
+      // here 'res' is an object containing all data for character with given name
       response.writeHead(200, { "content-type": "application/json" });
       response.end(JSON.stringify(res));
     }
@@ -267,10 +295,7 @@ const handlePlayerArea = (request, response) => {
         } else {
           //check the token is valid, if so send to player area
           if (clientDecoded) {
-            const filePath = path.join(
-              __dirname,
-              "../public/player-area.html"
-            );
+            const filePath = path.join(__dirname, "../public/player-area.html");
             fs.readFile(filePath, (err, file) => {
               if (err) {
                 console.log(err);
@@ -282,37 +307,37 @@ const handlePlayerArea = (request, response) => {
               }
             });
           } else {
-            console.log(1)
+            console.log(1);
             //if the token was not valid deliver 401
             response.writeHead(401, { "content-type": "text/html" });
-            response.end('<h1>Bad authentication</h1>');
+            response.end("<h1>Bad authentication</h1>");
           }
         }
       });
     } else {
-      console.log(2)
+      console.log(2);
       //there is a cookie but not a player cookie, deliver 401
       response.writeHead(401, { "content-type": "text/html" });
-      response.end('<h1>Bad authentication</h1>');
+      response.end("<h1>Bad authentication</h1>");
     }
   } else {
-  // there is no cookie, deliver 401
-  console.log(3)
-  response.writeHead(401, { "content-type": "text/html" });
+    // there is no cookie, deliver 401
+    console.log(3);
+    response.writeHead(401, { "content-type": "text/html" });
 
-const getChar = (name, cb) => {
-  dbConnection.query(
-    `SELECT name,powers_id,talisman,battle_cry,score FROM characters WHERE name=$1`,
-    [name],
-    (err, result) => {
-      if (err) return cb(err);
-      cb(null, result.rows);
-    }
-  );
-};
-  response.end('<h1>Bad authentication</h1>');
+    // const getChar = (name, cb) => {
+    //   dbConnection.query(
+    //     `SELECT name,powers_id,talisman,battle_cry,score FROM characters WHERE name=$1`,
+    //     [name],
+    //     (err, result) => {
+    //       if (err) return cb(err);
+    //       cb(null, result.rows);
+    //     }
+    //   );
+    // };
+    response.end("<h1>Bad authentication</h1>");
   }
-}
+};
 
 const handleDeleteChar = (request, response) => {
   let data = "";
@@ -323,7 +348,7 @@ const handleDeleteChar = (request, response) => {
     throw error;
   });
   request.on("end", () => {
-    const clientToken = cookie.parse(data).player
+    const clientToken = cookie.parse(data).player;
     jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
       // legitimacy of jwt already verified by handlePlayerArea handler
       deleteData.deleteChar(clientDecoded.name, (err, res) => {
@@ -332,13 +357,16 @@ const handleDeleteChar = (request, response) => {
           response.writeHead(404, { "content-type": "text/html" });
           response.end("<h1> This is not a character. Try again.</h1>");
         } else {
-          response.writeHead(200, { "content-type": "application/json"});
+          response.writeHead(302, {
+            "content-type": "application/json",
+            Location: "/"
+          });
           response.end();
         }
       });
-    })
-  })
-}
+    });
+  });
+};
 
 const handle404 = (request, response) => {
   const filePath = path.join(__dirname, "../public/404.html");
@@ -364,5 +392,6 @@ module.exports = {
   handleLogOut,
   handlePlayerArea,
   handleDeleteChar,
+  handleCheckChar,
   handle404
 };
