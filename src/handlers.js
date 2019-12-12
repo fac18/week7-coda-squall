@@ -1,5 +1,6 @@
 const getData = require("./queries/getData");
 const postData = require("./queries/postData");
+const deleteData = require("./queries/deleteData");
 const fs = require("fs");
 const querystring = require("querystring");
 const url = require("url");
@@ -70,7 +71,6 @@ const handleHome = (request, response) => {
       });
     }
   } else {
-    //there is no cookie at all, go to normal home
     const filePath = path.join(__dirname, "../public/index.html");
     fs.readFile(filePath, (err, file) => {
       if (err) {
@@ -83,7 +83,7 @@ const handleHome = (request, response) => {
       }
     });
   }
-};
+}
 
 const handlePublic = (request, response) => {
   const extension = path.extname(request.url).split(".")[1];
@@ -168,20 +168,31 @@ const handleCreateChar = (request, response) => {
   });
 };
 
-const handleGetChar = (request, response, endpoint) => {
-  // endpoint is of the form '/get-char?q=[name]'
-  let name = endpoint.split("=")[1];
-  getData.getChar(name, (err, res) => {
-    if (err) {
-      console.log(err);
-      response.writeHead(404, { "content-type": "text/html" });
-      response.end("<h1> This is not a character. Try again.</h1>");
-    } else {
-      // here 'res' is an object containing all data for character with given name
-      response.writeHead(200, { "content-type": "application/json" });
-      response.end(JSON.stringify(res));
-    }
+const handleGetChar = (request, response) => {
+  let data = "";
+  request.on("data", chunk => {
+    data += chunk;
   });
+  request.on("error", error => {
+    throw error;
+  });
+  request.on("end", () => {
+    const clientToken = cookie.parse(data).player
+    jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
+      // legitimacy of jwt already verified by handlePlayerArea handler
+      getData.getChar(clientDecoded.name, (err, res) => {
+        if (err) {
+          console.log(err);
+          response.writeHead(404, { "content-type": "text/html" });
+          response.end("<h1> This is not a character. Try again.</h1>");
+        } else {
+          // here 'res' is an object containing all (public) data for character with given name
+          response.writeHead(200, { "content-type": "application/json" });
+          response.end(JSON.stringify(res));
+        }
+      });
+    })
+  })
 };
 
 const handleGetAllChar = (request, response) => {
@@ -225,7 +236,7 @@ const handleLogIn = (request, response) => {
               };
               jwt.sign(payload, SECRET, (err, token) => {
                 response.writeHead(302, {
-                  "Set-cookie": `player=${token}; HttpOnly; Max-Age=3600`,
+                  "Set-cookie": `player=${token}; Max-Age=86400`,
                   Location: "/"
                 });
                 response.end();
@@ -249,6 +260,95 @@ const handleLogOut = (request, response) => {
   response.end();
 };
 
+const handlePlayerArea = (request, response) => {
+  let clientCookie = request.headers.cookie;
+  if (clientCookie) {
+    //there are cookies, check what they are
+    let clientToken = cookie.parse(clientCookie).player;
+    //check that there actually is a cookie called player
+    if (clientToken) {
+      jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
+        if (err) {
+          //in case there is an error with jwt verify
+          console.log(err);
+          response.writeHead(500, { "content-type": "text/html" });
+          response.end("<h1>Sorry, a problem on our end!</h1>");
+        } else {
+          //check the token is valid, if so send to player area
+          if (clientDecoded) {
+            const filePath = path.join(
+              __dirname,
+              "../public/player-area.html"
+            );
+            fs.readFile(filePath, (err, file) => {
+              if (err) {
+                console.log(err);
+                response.writeHead(500, { "content-type": "text/html" });
+                response.end("<h1>Sorry, a problem on our end!</h1>");
+              } else {
+                response.writeHead(200, { "content-type": "text/html" });
+                response.end(file);
+              }
+            });
+          } else {
+            console.log(1)
+            //if the token was not valid deliver 401
+            response.writeHead(401, { "content-type": "text/html" });
+            response.end('<h1>Bad authentication</h1>');
+          }
+        }
+      });
+    } else {
+      console.log(2)
+      //there is a cookie but not a player cookie, deliver 401
+      response.writeHead(401, { "content-type": "text/html" });
+      response.end('<h1>Bad authentication</h1>');
+    }
+  } else {
+  // there is no cookie, deliver 401
+  console.log(3)
+  response.writeHead(401, { "content-type": "text/html" });
+
+const getChar = (name, cb) => {
+  dbConnection.query(
+    `SELECT name,powers_id,talisman,battle_cry,score FROM characters WHERE name=$1`,
+    [name],
+    (err, result) => {
+      if (err) return cb(err);
+      cb(null, result.rows);
+    }
+  );
+};
+  response.end('<h1>Bad authentication</h1>');
+  }
+}
+
+const handleDeleteChar = (request, response) => {
+  let data = "";
+  request.on("data", chunk => {
+    data += chunk;
+  });
+  request.on("error", error => {
+    throw error;
+  });
+  request.on("end", () => {
+    const clientToken = cookie.parse(data).player
+    jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
+      // legitimacy of jwt already verified by handlePlayerArea handler
+      deleteData.deleteChar(clientDecoded.name, (err, res) => {
+        if (err) {
+          console.log(err);
+          response.writeHead(404, { "content-type": "text/html" });
+          response.end("<h1> This is not a character. Try again.</h1>");
+        } else {
+          response.writeHead(200, { "content-type": "application/json"});
+          response.end();
+        }
+      });
+    })
+  })
+}
+
 const handle404 = (request, response) => {
   const filePath = path.join(__dirname, "../public/404.html");
   fs.readFile(filePath, (err, file) => {
@@ -271,5 +371,7 @@ module.exports = {
   handleGetAllChar,
   handleLogIn,
   handleLogOut,
+  handlePlayerArea,
+  handleDeleteChar,
   handle404
 };
