@@ -2,9 +2,10 @@ const dbConnection = require("../database/db_connection");
 
 const postChar = (character, cb) => {
   dbConnection.query(
-    "INSERT INTO characters (name, powers_id, talisman, battle_cry) VALUES ($1, $2, $3, $4)",
+    "INSERT INTO characters (name, hashed_password, powers_id, talisman, battle_cry) VALUES ($1, $2, $3, $4, $5)",
     [
       character.name,
+      character.hashed_password,
       parseInt(character.powers_id),
       character.talisman,
       character.battle_cry

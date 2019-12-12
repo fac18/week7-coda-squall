@@ -10,21 +10,63 @@ const cookie = require("cookie");
 const SECRET = process.env.SECRET;
 
 const handleHome = (request, response) => {
-  const filePath = path.join(__dirname, "../public/index.html");
-  fs.readFile(filePath, (err, file) => {
-    if (err) {
-      console.log(err);
-      response.writeHead(500, { "content-type": "text/html" });
-      response.end("<h1>Sorry, a problem on our end!</h1>");
-    } else {
-      response.writeHead(200, { "content-type": "text/html" });
-      response.end(file);
-    }
-  });
+  let clientCookie = request.headers.cookie;
+  console.log({ clientCookie });
+  if (clientCookie) {
+    let clientToken = cookie.parse(clientCookie).player;
+    console.log({ clientToken });
+    jwt.verify(clientToken, SECRET, (err, clientDecoded) => {
+      if (err) {
+        console.log(err);
+        response.writeHead(500, { "content-type": "text/html" });
+        response.end("<h1>Sorry, a problem on our end!</h1>");
+      } else {
+        if (clientDecoded) {
+          const filePath = path.join(
+            __dirname,
+            "../public/index-loggedin.html"
+          );
+          fs.readFile(filePath, (err, file) => {
+            if (err) {
+              console.log(err);
+              response.writeHead(500, { "content-type": "text/html" });
+              response.end("<h1>Sorry, a problem on our end!</h1>");
+            } else {
+              response.writeHead(200, { "content-type": "text/html" });
+              response.end(file);
+            }
+          });
+        } else {
+          const filePath = path.join(__dirname, "../public/index.html");
+          fs.readFile(filePath, (err, file) => {
+            if (err) {
+              console.log(err);
+              response.writeHead(500, { "content-type": "text/html" });
+              response.end("<h1>Sorry, a problem on our end!</h1>");
+            } else {
+              response.writeHead(200, { "content-type": "text/html" });
+              response.end(file);
+            }
+          });
+        }
+      }
+    });
+  } else {
+    const filePath = path.join(__dirname, "../public/index.html");
+    fs.readFile(filePath, (err, file) => {
+      if (err) {
+        console.log(err);
+        response.writeHead(500, { "content-type": "text/html" });
+        response.end("<h1>Sorry, a problem on our end!</h1>");
+      } else {
+        response.writeHead(200, { "content-type": "text/html" });
+        response.end(file);
+      }
+    });
+  }
 };
 
 const handlePublic = (request, response) => {
-  // const extension = request.url.split('.')[1]
   const extension = path.extname(request.url).split(".")[1];
   const extensionType = {
     html: "text/html",
@@ -116,11 +158,6 @@ const handleLogIn = (request, response) => {
         response.writeHead(500, { "content-type": "text/html" });
         response.end("<h1>Sorry, a problem on our end!</h1>");
       } else {
-        console.log(
-          "userAth password and hashedpassword",
-          userAuth.password,
-          hashedPassword
-        );
         bcrypt.compare(userAuth.password, hashedPassword, (err, match) => {
           if (err) {
             console.log(err);
@@ -129,7 +166,6 @@ const handleLogIn = (request, response) => {
           } else {
             if (match) {
               const payload = {
-                logged_in: true,
                 name: userAuth.name
               };
               jwt.sign(payload, SECRET, (err, token) => {

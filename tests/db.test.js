@@ -75,6 +75,8 @@ tape("Create character", t => {
   };
   let character = {
     name: "Heroku",
+    hashed_password:
+      "$2a$10$ywaeNc32OdDiCfiZIzelReK9SjVUVrvfiCs9zRjjAZUyhWrWktIGi",
     talisman: "enchanted amulet",
     powers_id: 3,
     battle_cry: "Your app isn't working"
@@ -96,6 +98,8 @@ tape("Get specific character", t => {
     {
       id: 1,
       name: "Travis",
+      hashed_password:
+        "$2a$10$mCNfqtPuPnUv1XsTZNlUku6AB1/6XEypARY5vkL63O2Am7dHZQ7EG",
       powers_id: 4,
       talisman: "golden moustache",
       battle_cry: "Your build is not passing",
