@@ -35,7 +35,13 @@
       <h2 class="form-heading">Welcome back</h2>
       <form action="/login" method="POST" class="return-form">
         <label for="name" class="return-form__label">Player name:</label>
-        <input type="text" class="return-form__field" name="name" id="name" />
+        <input
+          type="text"
+          class="return-form__field"
+          name="name"
+          id="name"
+          required
+        />
         <br />
         <label for="login-password" class="return-form__password"
           >Password:
@@ -45,6 +51,7 @@
           class="return-form__field"
           name="password"
           id="login-password"
+          required
         /><br />
         <button
           type="submit"
@@ -65,15 +72,16 @@
           <!-- normal text fields for name, talisman, battle cry -->
           <label class="char-form__label" for="char-form-name"
             >Player name:</label
-          ><br />
+          >
+          <br />
           <input
             type="text"
             class="char-form__field"
             name="name"
             id="char-form-name"
+            required
           />
           <p class="error" id="nameErr"></p>
-          <br />
 
           <label class="char-form__label" for="char-form-password"
             >New password:</label
@@ -83,9 +91,10 @@
             class="char-form__field"
             name="password"
             id="char-form-password"
+            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+            required
           />
           <p class="error" id="pwErr"></p>
-          <br />
 
           <label class="char-form__label" for="char-form-name"
             >Confirm your password:</label
@@ -95,9 +104,9 @@
             class="char-form__field"
             name="confirmedPassword"
             id="char-form-confirmedPassword"
+            required
           />
           <p class="error" id="confirmPwErr"></p>
-          <br />
 
           <label for="talisman" class="char-form__label">Your talisman:</label
           ><br />
@@ -106,9 +115,9 @@
             class="char-form__field"
             name="talisman"
             id="char-form-talisman"
+            required
           />
           <p class="error" id="talismanErr"></p>
-          <br />
           <label for="char-form-battle-cry" class="char-form__label"
             >Your battle cry:</label
           ><br />
@@ -117,9 +126,9 @@
             class="char-form__field"
             name="battleCry"
             id="char-form-battle-cry"
+            required
           />
           <p class="error" id="battleErr"></p>
-          <br />
         </div>
         <div class="char-form__right">
           <!-- column of powers as radio buttons disguised as images -->

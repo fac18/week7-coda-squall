@@ -1,6 +1,6 @@
 # <font color="red">SQ</font>UAL<font color="red">L</font>
 
-![Build Status](new travis badge here)
+![Build Status](https://travis-ci.org/fac18/week7-coda-squall.svg?branch=master)
 
 ![codecov](new codecov badge here)
 
@@ -34,17 +34,27 @@ Catch up with our story so far on the [previous week's repo](https://github.com/
 
 As per the [project brief](https://github.com/foundersandcoders/master-reference/blob/master/coursebook/week-7/project.md)
 
-- [ ] Login form with 2 fields - username and password
-- [ ] Users only have to log in once (i.e. implement a cookie-based session on login)
+- [x] Login form with 2 fields - username and password
+- [x] Users only have to log in once (i.e. implement a cookie-based session on login)
 - [ ] Username is visible on each page of the site after logging in
 - [ ] Any user-submitted content should be labelled with the authors username
-- [ ] There should be protected routes and unprotected routes that depend on the user having a cookie or not
-- [ ] Website content should be stored in a database
-- [ ] Include thorough tests on the back-end, testing pure functions and testing routes using Supertest. If you make external API calls, use Nock to mock the response for your tests
+- [x] There should be protected routes and unprotected routes that depend on the user having a cookie or not
+- [x] Website content should be stored in a database
+- [x] Include thorough tests on the back-end, testing pure functions and testing routes using Supertest. If you make external API calls, use Nock to mock the response for your tests
 - [ ] Test front-end logic, we don't expect tests on the DOM
 
 ---
 
+### Or much prettier: as issues
+
+![](https://i.imgur.com/ryVnlhi.png)
+
+---
+
+## New wireframe
+
+Split depending on whether the user is logged in.
+
 ![](https://i.imgur.com/ceY3rx8.jpg)
 
-
+---
