@@ -52,7 +52,7 @@ const populatePlayer = char => {
   playerPowerNameLabel.textContent = `Power Name: `;
   playerPowerNameValue.textContent = `${powerMap[char.powers_id]}`;
   playerScoreLabel.textContent = `Score: `;
-  playerScoreValue.textContext = char.score.toString();
+  playerScoreValue.textContext = char.score;
 
   //append all elements
   playerSection.appendChild(playerName);
@@ -68,14 +68,12 @@ const populatePlayer = char => {
   playerSection.appendChild(playerScore);
   playerScore.appendChild(playerScoreLabel);
   playerScore.appendChild(playerScoreValue);
-
-  window.location.href = "#player-section";
 };
 
 //define function for finding existing player
 const getExistingPlayer = cookieString => {
-  backendCall(`/get-char`, "POST", cookieString, char => {
-    populatePlayer(char[0]);
+  backendCall(`/get-char`, "POST", cookieString, res => {
+    populatePlayer(res[0]);
   });
 };
 

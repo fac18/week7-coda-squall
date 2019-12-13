@@ -1,13 +1,8 @@
-// * ESSENTIAL NODES *
-
-const postButton = document.querySelector(".char-form__submit");
-const getButton = document.querySelector(".return-form__submit");
-
 // * FUNCTION DECLARATIONS *
 
 // define DOM injection function for populating leaderboard with all characters
-const populateAllChar = res => {
-  let allCharData = res;
+const populateAllChar = getResult => {
+  let allCharData = getResult;
   let tableBody = document.getElementById("table-body");
   allCharData.map(character => {
     let row = document.createElement("tr");
@@ -36,16 +31,25 @@ const populateAllChar = res => {
   });
 };
 
+const populateWelcome = getResult => {
+  let char = getResult[0];
+  let welcomeHeading = document.querySelector('.welcome-section__heading');
+  let welcomeText = document.querySelector('.welcome-section__text');
+  welcomeHeading.textContent = `Welcome, ${char.name}`
+  welcomeText.textContent = `Your current score is ${char.score}`
+  
+}
+
 // * EVENT LISTENERS *
 
-// populate leaderboard
+// populate welcome and leaderboard
 window.onload = () => {
   backendCall("/get-all-char", "GET", null, res => {
     populateAllChar(res);
   });
+  if (/player/.test(document.cookie)) {
+    backendCall(`/get-char`, "POST", document.cookie, res => {
+      populateWelcome(res);
+    });
+  }
 };
-
-// on submission of create char form, validate and preventDefault if errors
-postButton.addEventListener("click", e => {
-
-});

@@ -1,3 +1,5 @@
+/* Variables */
+
 :root {
   /* Spacing variables: golden ratio */
   --space-xs: 0.382rem;
@@ -13,6 +15,7 @@
 }
 
 /* General */
+
 *{
   padding: 0px;
   margin: 0px;
@@ -120,6 +123,22 @@ a #leaderboard {
   font-weight: bold;
 }
 
+/* Welcome section */
+
+.welcome-section {
+  margin: var(--space-m) var(--space-m)
+}
+
+.welcome-section__heading {
+  color: white;
+}
+
+.welcome-section__text {
+  margin: 0 0 var(--space-m) 0;
+  color: white;
+}
+
+
 /* Radio buttons as images */
 
 .char-form__radio-input {
@@ -160,7 +179,11 @@ table {
   text-align: center;
 }
 
-/* Leaderboard table */
+/* Leaderboard/table */
+
+.leaderboard-section {
+  margin: var(--space-xxl) var(--space-m);
+}
 
 .characters-table {
   border-collapse: collapse;
@@ -198,6 +221,7 @@ table {
 
 .player-section {
   margin-bottom: var(--space-m);
+  color: white;
 }
 
 h3 {
