@@ -37,7 +37,6 @@ const populateWelcome = getResult => {
   let welcomeText = document.querySelector('.welcome-section__text');
   welcomeHeading.textContent = `Welcome, ${char.name}`
   welcomeText.textContent = `Your current score is ${char.score}`
-  
 }
 
 // * EVENT LISTENERS *
