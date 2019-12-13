@@ -316,17 +316,6 @@ const handlePlayerArea = (request, response) => {
   } else {
     // there is no cookie, deliver 401
     response.writeHead(401, { "content-type": "text/html" });
-
-    // const getChar = (name, cb) => {
-    //   dbConnection.query(
-    //     `SELECT name,powers_id,talisman,battle_cry,score FROM characters WHERE name=$1`,
-    //     [name],
-    //     (err, result) => {
-    //       if (err) return cb(err);
-    //       cb(null, result.rows);
-    //     }
-    //   );
-    // };
     response.end("<h1>Bad authentication</h1>");
   }
 };
