@@ -88,8 +88,10 @@ deleteButton.addEventListener("click", e => {
     "Are you sure you want to delete your character?"
   );
   if (result) {
-    deleteExistingPlayer(document.cookie);
-    document.cookie = "player=0; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    if (/player/.test(document.cookie)) {
+      deleteExistingPlayer(document.cookie);
+      document.cookie = "player=0; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    }
   } else {
     e.preventDefault();
   }
