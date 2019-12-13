@@ -239,8 +239,17 @@ const handleLogIn = (request, response) => {
         response.end("<h1>Sorry, a problem on our end!</h1>");
       } else {
         if (hashedPassword.length == 0) {
-          response.writeHead(401, { "content-type": "text/html" });
-          response.end("<h1>Bad authentication - user does not exist</h1>");
+          const filePath = path.join(__dirname, "../public/401.html");
+                  fs.readFile(filePath, (err, file) => {
+                    if (err) {
+                      console.log(err);
+                      response.writeHead(500, { "content-type": "text/html" });
+                      response.end("<h1> Sorry, there was a problem on our end! </h1>");
+                    } else {
+                      response.writeHead(401, { "content-type": "text/html" });
+                      response.end(file);
+                    }
+                  });
         } else {
           bcrypt.compare(
             userAuth.password,
