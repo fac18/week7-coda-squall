@@ -53,11 +53,11 @@ test("Public route should render favicon", t => {
 
 test("create-char route should post character obj", t => {
   supertest(router)
-    .get("/create-char")
+    .post("/create-char")
     .send(
-      "name=dragon&hashed_password=$2a$10$a9zQ0BfeloJxoPzcvauISegrdTM6Fn4EbbFrWFirKeJXfKPPzZm8a&powers_id=4&talisman=ankh&battle_cry=AHH"
+      "name=dragon&password=$2a$10$a9zQ0BfeloJxoPzcvauISegrdTM6Fn4EbbFrWFirKeJXfKPPzZm8a&powerId=4&talisman=ankh&battleCry=AHH"
     )
-    .expect(201)
+    .expect(302)
     .expect("Location", "/")
     .end((err, res) => {
       t.error(err, "Error is null");
@@ -65,9 +65,9 @@ test("create-char route should post character obj", t => {
     });
 });
 
-test("get-char route should get character obj", t => {
+test("check-char route should get character obj", t => {
   supertest(router)
-    .get("/get-char?q=dragon")
+    .get("/check-char?name=dragon")
     .expect(200)
     .expect("content-type", /json/)
     .end((err, res) => {

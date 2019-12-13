@@ -96,10 +96,7 @@ tape("Get specific character", t => {
   });
   let expected = [
     {
-      id: 1,
       name: "Travis",
-      hashed_password:
-        "$2a$10$mCNfqtPuPnUv1XsTZNlUku6AB1/6XEypARY5vkL63O2Am7dHZQ7EG",
       powers_id: 4,
       talisman: "golden moustache",
       battle_cry: "Your build is not passing",
@@ -108,6 +105,7 @@ tape("Get specific character", t => {
   ];
   getData.getChar("Travis", (err, res) => {
     if (err) return err;
+    console.log(res);
     t.deepEqual(res, expected, "Should return the character Travis");
     t.end();
   });
