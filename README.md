@@ -2,8 +2,6 @@
 
 ![Build Status](https://travis-ci.org/fac18/week7-coda-squall.svg?branch=master)
 
-[![codecov](https://codecov.io/gh/fac18/week7-coda-squall/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/week7-coda-squall)
-
 ---
 
 ## We are:
@@ -58,3 +56,101 @@ Split depending on whether the user is logged in.
 ![](https://i.imgur.com/ceY3rx8.jpg)
 
 ---
+
+
+# Client side validation
+
+---
+
+<h2>
+password validation 
+</h2>
+
+
+```javascript=
+const charPw = document.getElementById("char-form-password");
+const pwErr = document.getElementById("pwErr");
+
+let checkPw = () => {
+  if (charPw.validity.patternMismatch) {
+    displayErr(
+      pwErr,
+      "Password must contain at least eight characters, including one letter and one number"
+    );
+  } else if (charPw.validity.valueMissing) {
+    displayErr(pwErr, "Please enter a password");
+  } else {
+    displayErr(pwErr, "");
+    return true;
+  }
+};
+```
+
+---
+
+<h2>Existing user validation</h2>
+
+```javascript=
+const checkUniqueUser = cb => {
+  backendCall(`/check-char?=${charName.value}`, "GET", null, char => {
+    cb(char);
+  });
+};
+
+const checkName = () => {
+    checkUniqueUser(char => {
+      if (char.length != 0) {
+        displayErr(nameErr, "Player name is already taken");
+        nameOk = false;
+      } else if (!charName.value) {
+        displayErr(nameErr, "Please enter a name");
+        nameOk = false;
+      } else {
+        displayErr(nameErr, "");
+        nameOk = true;
+      }
+    });
+  };
+```
+
+---
+
+# Cookie
+
+![](https://media2.giphy.com/media/CoWGqp7Q7mx8c/giphy.gif?cid=790b7611636a482f64f2af8926814326341c12274e3d4d68&rid=giphy.gif)
+
+---
+
+<h2>
+Deleting cookie from the front-end
+</h2>
+
+```javascript=
+const deleteButton = document.querySelector("#delete-button");
+deleteButton.addEventListener("click", e => {
+  const result = window.confirm(
+    "Are you sure you want to delete your character?"
+  );
+  if (result) {
+    deleteExistingPlayer(document.cookie);
+    document.cookie = "player=0; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+  } else {
+    e.preventDefault();
+  }
+});
+```
+
+---
+
+# HttpOnly
+
+---
+
+## To be improved
+
+[![codecov](https://codecov.io/gh/fac18/week7-coda-squall/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/week7-coda-squall)
+
+We wrote loads of new code but no new tests
+
+---
+
