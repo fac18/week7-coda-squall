@@ -256,8 +256,17 @@ const handleLogIn = (request, response) => {
                 response.end();
               });
             } else {
-              response.writeHead(401, { "content-type": "text/html" });
-              response.end("<h1>Bad authentication</h1>");
+                const filePath = path.join(__dirname, "../public/401.html");
+                fs.readFile(filePath, (err, file) => {
+                  if (err) {
+                    console.log(err);
+                    response.writeHead(500, { "content-type": "text/html" });
+                    response.end("<h1> Sorry, there was a problem on our end! </h1>");
+                  } else {
+                    response.writeHead(401, { "content-type": "text/html" });
+                    response.end(file);
+                  }
+                });
             }
           }
         });
@@ -303,31 +312,47 @@ const handlePlayerArea = (request, response) => {
             });
           } else {
             //if the token was not valid deliver 401
-            response.writeHead(401, { "content-type": "text/html" });
-            response.end("<h1>Bad authentication</h1>");
+            const filePath = path.join(__dirname, "../public/401.html");
+                fs.readFile(filePath, (err, file) => {
+                  if (err) {
+                    console.log(err);
+                    response.writeHead(500, { "content-type": "text/html" });
+                    response.end("<h1> Sorry, there was a problem on our end! </h1>");
+                  } else {
+                    response.writeHead(401, { "content-type": "text/html" });
+                    response.end(file);
+                  }
+                });
           }
         }
       });
     } else {
       //there is a cookie but not a player cookie, deliver 401
-      response.writeHead(401, { "content-type": "text/html" });
-      response.end("<h1>Bad authentication</h1>");
+      const filePath = path.join(__dirname, "../public/401.html");
+                fs.readFile(filePath, (err, file) => {
+                  if (err) {
+                    console.log(err);
+                    response.writeHead(500, { "content-type": "text/html" });
+                    response.end("<h1> Sorry, there was a problem on our end! </h1>");
+                  } else {
+                    response.writeHead(404, { "content-type": "text/html" });
+                    response.end(file);
+                  }
+                });
     }
   } else {
     // there is no cookie, deliver 401
-    response.writeHead(401, { "content-type": "text/html" });
-
-    // const getChar = (name, cb) => {
-    //   dbConnection.query(
-    //     `SELECT name,powers_id,talisman,battle_cry,score FROM characters WHERE name=$1`,
-    //     [name],
-    //     (err, result) => {
-    //       if (err) return cb(err);
-    //       cb(null, result.rows);
-    //     }
-    //   );
-    // };
-    response.end("<h1>Bad authentication</h1>");
+    const filePath = path.join(__dirname, "../public/401.html");
+                fs.readFile(filePath, (err, file) => {
+                  if (err) {
+                    console.log(err);
+                    response.writeHead(500, { "content-type": "text/html" });
+                    response.end("<h1> Sorry, there was a problem on our end! </h1>");
+                  } else {
+                    response.writeHead(401, { "content-type": "text/html" });
+                    response.end(file);
+                  }
+                });
   }
 };
 
