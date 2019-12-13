@@ -1,3 +1,5 @@
+/* Variables */
+
 :root {
   /* Spacing variables: golden ratio */
   --space-xs: 0.382rem;
@@ -13,6 +15,7 @@
 }
 
 /* General */
+
 *{
   padding: 0px;
   margin: 0px;
@@ -112,6 +115,20 @@ a {
   font-weight: bold;
 }
 
+/* Welcome section */
+
+.welcome-section {
+  margin: var(--space-m) var(--space-m)
+}
+
+.welcome-section__heading {
+
+}
+
+.welcome-section__text {
+  margin: 0 0 var(--space-m) 0;
+}
+
 
 /* Radio buttons as images */
 
@@ -147,7 +164,11 @@ table {
   text-align: center;
 }
 
-/* Leaderboard table */
+/* Leaderboard/table */
+
+.leaderboard-section {
+  margin: var(--space-xxl) var(--space-m);
+}
 
 .characters-table {
   border-collapse: collapse;
@@ -228,3 +249,4 @@ h3 {
   .form-section {
     width: 100%;
   }
+}
