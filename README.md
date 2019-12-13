@@ -2,7 +2,7 @@
 
 ![Build Status](https://travis-ci.org/fac18/week7-coda-squall.svg?branch=master)
 
-![codecov](new codecov badge here)
+[![codecov](https://codecov.io/gh/fac18/week7-coda-squall/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/week7-coda-squall)
 
 ---
 
