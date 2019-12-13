@@ -130,11 +130,12 @@ a #leaderboard {
 }
 
 .welcome-section__heading {
-
+  color: white;
 }
 
 .welcome-section__text {
   margin: 0 0 var(--space-m) 0;
+  color: white;
 }
 
 
@@ -220,6 +221,7 @@ table {
 
 .player-section {
   margin-bottom: var(--space-m);
+  color: white;
 }
 
 h3 {

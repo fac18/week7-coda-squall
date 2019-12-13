@@ -55,7 +55,7 @@ test("create-char route should post character obj", t => {
   supertest(router)
     .post("/create-char")
     .send(
-      "name=dragon&password=$2a$10$a9zQ0BfeloJxoPzcvauISegrdTM6Fn4EbbFrWFirKeJXfKPPzZm8a&powerId=4&talisman=ankh&battleCry=AHH"
+      "name=Dragon&password=$2a$10$a9zQ0BfeloJxoPzcvauISegrdTM6Fn4EbbFrWFirKeJXfKPPzZm8a&powerId=4&talisman=ankh&battleCry=AHH"
     )
     .expect(302)
     .expect("Location", "/")
