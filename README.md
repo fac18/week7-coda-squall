@@ -1,14 +1,7 @@
-# <font color="red">SQ</font>UAL<font color="red">L</font>
+# <font color="red">SQ</font>UAL<font color="red">L</font> RETURNS
 
 ![Build Status](https://travis-ci.org/fac18/week7-coda-squall.svg?branch=master)
-
----
-
-## We are:
-* Dan 🎮
-* Renata 🐰
-* Roshan 🙆🏾
-* Gillian 🍬
+ Dan 🎮 Renata 🐰 Roshan 🙆🏾 Gillian 🍬
 
 ---
 
@@ -24,28 +17,32 @@
 
 ## This is Week 2
 
-Catch up with our story so far on the [previous week's repo](https://github.com/fac18/week6-coda-squall/)
+Catch up with our story so far on the [previous week's repo](https://github.com/fac18/week6-coda-squall/)!
 
 ---
 
 ## Requirements this time
 
+<font size="5">
+
 As per the [project brief](https://github.com/foundersandcoders/master-reference/blob/master/coursebook/week-7/project.md)
 
 - [x] Login form with 2 fields - username and password
 - [x] Users only have to log in once (i.e. implement a cookie-based session on login)
-- [ ] Username is visible on each page of the site after logging in
-- [ ] Any user-submitted content should be labelled with the authors username
+- [x] Username is visible on each page of the site after logging in
+- [x] Any user-submitted content should be labelled with the authors username
 - [x] There should be protected routes and unprotected routes that depend on the user having a cookie or not
 - [x] Website content should be stored in a database
-- [x] Include thorough tests on the back-end, testing pure functions and testing routes using Supertest. If you make external API calls, use Nock to mock the response for your tests
+- [ ] Include thorough tests on the back-end, testing pure functions and testing routes using Supertest. If you make external API calls, use Nock to mock the response for your tests
 - [ ] Test front-end logic, we don't expect tests on the DOM
+
+</font>
 
 ---
 
 ### Or much prettier: as issues
 
-![](https://i.imgur.com/ryVnlhi.png)
+![](https://i.imgur.com/ryVnlhi.png =800x500)
 
 ---
 
@@ -53,10 +50,9 @@ As per the [project brief](https://github.com/foundersandcoders/master-reference
 
 Split depending on whether the user is logged in.
 
-![](https://i.imgur.com/ceY3rx8.jpg)
+![](https://i.imgur.com/ceY3rx8.jpg =800x500)
 
 ---
-
 
 # Client side validation
 
@@ -146,11 +142,24 @@ deleteButton.addEventListener("click", e => {
 
 ---
 
+# Auth
+
+We'll walk you through our **login** and **home** endpoint handling
+
+---
+
 ## To be improved
 
 [![codecov](https://codecov.io/gh/fac18/week7-coda-squall/branch/master/graph/badge.svg)](https://codecov.io/gh/fac18/week7-coda-squall)
 
-We wrote loads of new code but no new tests
+- Testing; we wrote loads of new code but no new tests
+- Abstracting and refactoring. For example, our **handlers.js** file is 433 lines long and we write the same 500 response *TWENTY* times
+- Replace all our callback logic with shiny new **promises**
+- Some of our frontend functions are unnecessarily impure
 
 ---
+
+# Thank you 
+
+![](https://media0.giphy.com/media/ShKJ9XiQdn3qg/giphy.gif?cid=790b7611f72c3670d076da7f82e054299b4b431df6101d08&rid=giphy.gif)
 
